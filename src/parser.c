@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 18:35:17 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:14:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	assign_texture(t_game *game, int key, char *address)
 	return (0);
 }
 
-char	*clean_address(t_game *game, char *address)
+char	*clean_address(char *address)
 {
 	int		i;
 	int		len;
@@ -51,7 +51,7 @@ char	*clean_address(t_game *game, char *address)
 	len = 0;
 	while (address[len] && !ft_isspace(address[len]) && address[len] != '\n')
 		len++;
-	res = safe_malloc(game, len);
+	res = (char *)safe_malloc(len);
 	while (i < len)
 		res[i++] = (*address)++;
 	return (res);
@@ -65,7 +65,7 @@ static int	check_dir(t_game *game, char *line, int key, int i)
 	while (line[i])
 		while (ft_isspace(line[i]))
 			i++;
-	address = clean_address(game, (line[i]));
+	address = clean_address((&line[i]));
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 	{
@@ -80,27 +80,24 @@ static int	check_dir(t_game *game, char *line, int key, int i)
 
 static int	check_identifier(t_game *game, char *line)
 {
+	int	result;
+
+	result = 0;
 	if (!ft_strncmp(line, "NO ", 3))
-		if (check_dir(game, line, 0, 3))
-			return (1);
+		result = check_dir(game, line, 0, 3);
 	else if (!ft_strncmp(line, "SO ", 3))
-		if (check_dir(game, line, 1, 3))
-			return (1);
+		result = check_dir(game, line, 1, 3);
 	else if (!ft_strncmp(line, "WE ", 3))
-		if (check_dir(game, line, 2, 3))
-			return (1);
+		result = check_dir(game, line, 2, 3);
 	else if (!ft_strncmp(line, "EA ", 3))
-		if (check_dir(game, line, 3, 3))
-			return (1);
+		result = check_dir(game, line, 3, 3);
 	else if (!ft_strncmp(line, "F ", 2))
-		if (check_dir(game, line, 4, 2))
-			return (1);
+		result = check_dir(game, line, 4, 2);
 	else if (!ft_strncmp(line, "C ", 2))
-		if (check_dir(game, line, 5, 2))
-			return (1);
+		result = check_dir(game, line, 5, 2);
 	else
 		return (1);
-	return (0);
+	return (result);
 }
 
 static int	check_specs(t_game *game, char *map_file)
@@ -148,4 +145,5 @@ int	checker_exec(t_game *game, char *argv)
 {
 	if (valid_file(game, argv) != 0)
 		return (1);
+	return (0);
 }

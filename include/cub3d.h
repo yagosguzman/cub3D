@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 17:31:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:13:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,16 @@ typedef struct s_game
 // int	check_identifier(t_game *game, char *line);
 // int	check_specs(t_game *game, char *map_file);
 // int	valid_file(t_game *game, char *file_name);
-int	checker_exec(t_game *game, char *argv);
+int		checker_exec(t_game *game, char *argv);
+
+/*###### UTILS.C ######*/
+void	*ft_free(void *ptr);
+void	*safe_malloc(size_t size);
+
+/*###### ERROR.C ######*/
+int	ft_error(t_game *game, int errnum);
+
+
 
 
 #endif

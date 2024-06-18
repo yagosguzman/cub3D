@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    emergencyMakefile                                  :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/18 20:20:38 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/18 20:20:10 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,21 +28,19 @@ all: $(NAME)
 
 -include $(DEPS)
 $(NAME): $(OBJ) $(HEADER)
-		@$(CC) $(FLAGS) $(SRC) -o $(NAME)
+	@make -C ./mlx_linux all
+	@$(CC) $(FLAGS) $(SRC) -Lmlx_linux -lmlx_Linux -L./mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "Executable ready!"
 
 %.o:%.c Makefile 
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -Imlx_linux -03 -c $< -o $@
 
-
-libft_make:
-	@$(MAKE) -C Libft
-	@echo "$(GREEN)\nCreated $(LIBFT) ✓$(DEF_COLOR)\n"
 
 bonus: $(NAME_BONUS)
 
 -include $(BONUS_DEPS)
 $(NAME_BONUS): $(OBJ_BONUS) $(HEADER_BONUS)
+	@make -C ./mlx_linux all
 	@$(CC) $(FLAGS) $(SRC_BONUS) -Lmlx_linux -lmlx_Linux -L./mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME_BONUS)
 	@echo "BONUS: Executable ready!"
 	

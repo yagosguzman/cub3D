@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/18 21:17:26 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/18 21:21:19 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ NAME			= cub3D
 NAME_BONUS		= cub3D_bonus
 LIBFT			= Libft/libft.a
 CC				= cc
-FLAGS			= -Wall -Werror -Wextra -fsanitize=address
+FLAGS			= -Wall -Werror -Wextra -g -fsanitize=address
 RM				= rm -f
 
 SRC				= src/main.c src/error.c src/parser.c src/utils.c

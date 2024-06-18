@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/17 22:15:43 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:31:32 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,23 @@
 # include "../Libft/inc/libft.h"
 # include "../mlx_linux/mlx.h"
 
-typedef struct s_game
+
+typedef struct s_textures
 {
-	void	*mlx;
-	void	*win;
 	char	*north;
 	char	*south;
 	char	*west;
 	char	*east;
 	char	*floor;
 	char	*ceiling;
+
+}	t_textures;
+
+typedef struct s_game
+{
+	void				*mlx;
+	void				*win;
+	struct s_textures	*textures;
 
 }	t_game;
 

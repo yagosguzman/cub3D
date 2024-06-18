@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:17:47 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/17 19:15:25 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:26:40 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_error(t_game *game, int errnum)
 	if (errnum == 7)
 		ft_putstr_fd("Problem reading the map.\n", 2);
 	if (errnum == 8)
-		ft_putstr_fd("Problem with mallocs.\n", 2);
+		ft_putstr_fd("Problem with malloc.\n", 2);
 	return (ft_free(game));
 }
 

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/17 22:15:33 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:35:17 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,40 @@ static int	ft_isspace(char c)
 
 static int	assign_texture(t_game *game, int key, char *address)
 {
-	if (key == 0 && game->north == NULL)
-		game->north = address;
-	else if (key == 1 && game->south == NULL)
-		game->south = address;
-	else if (key == 2 && game->south == NULL)
-		game->south = address;
-	else if (key == 3 && game->south == NULL)
-		game->south = address;
-	else if (key == 4 && game->south == NULL)
-		game->south = address;
-	else if (key == 5 && game->south == NULL)
-		game->south = address;
+	if (key == 0 && game->textures->north == NULL)
+		game->textures->north = address;
+	else if (key == 1 && game->textures->south == NULL)
+		game->textures->south = address;
+	else if (key == 2 && game->textures->west == NULL)
+		game->textures->west = address;
+	else if (key == 3 && game->textures->east == NULL)
+		game->textures->east = address;
+	else if (key == 4 && game->textures->floor == NULL)
+		game->textures->floor = address;
+	else if (key == 5 && game->textures->ceiling == NULL)
+		game->textures->ceiling = address;
 	else
 	{
 		free(address);
 		return (1);
 	}
 	return (0);
+}
+
+char	*clean_address(t_game *game, char *address)
+{
+	int		i;
+	int		len;
+	char	*res;
+
+	i = 0;
+	len = 0;
+	while (address[len] && !ft_isspace(address[len]) && address[len] != '\n')
+		len++;
+	res = safe_malloc(game, len);
+	while (i < len)
+		res[i++] = (*address)++;
+	return (res);
 }
 
 static int	check_dir(t_game *game, char *line, int key, int i)
@@ -49,7 +65,7 @@ static int	check_dir(t_game *game, char *line, int key, int i)
 	while (line[i])
 		while (ft_isspace(line[i]))
 			i++;
-	address = ft_strdup((line[i])); // customiza strdup para que no copie los espacios del final?
+	address = clean_address(game, (line[i]));
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 	{

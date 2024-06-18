@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vasko <vasko@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:56:21 by gpinilla          #+#    #+#             */
-/*   Updated: 2023/08/30 00:12:13 by vasko            ###   ########.fr       */
+/*   Updated: 2024/06/18 20:47:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 char	*ft_strchr_line(char *s, int c)
 {

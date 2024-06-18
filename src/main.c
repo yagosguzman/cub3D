@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 20:15:12 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:45:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game	*game;
 
 	if (argc == 2)
 	{
-		if (checker_exec(&game, argv[1]) == 0)
+		game = ft_calloc(1, sizeof(t_game));
+		if (checker_exec(game, argv[1]) == 0)
 			printf("TUDO BEM\n");
 		else
 			printf("OH NO :(\n");

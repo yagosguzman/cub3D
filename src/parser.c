@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 20:14:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/18 21:07:00 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,7 @@ static int	check_specs(t_game *game, char *map_file)
 {
 	int		fd;
 	char	*line;
-	char	*tmp;
 
-	tmp = "";
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 		return (ft_error(game, 7));

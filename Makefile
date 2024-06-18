@@ -6,59 +6,105 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/18 20:20:38 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/18 20:35:32 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D
-NAME_BONUS = cub3D_bonus
-CC = cc
-FLAGS = -Wall -Werror -Wextra -fsanitize=address
-RM = rm -f
-HEADER = ./include/cub3d.h
-HEADER_BONUS = ./include/cub3d_bonus.h
-SRC = src/
-SRC_BONUS = src_b/
-OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
-DEPS = $(addsuffix .d, $(basename $(SRC)))
-BONUSDEPS = $(addsuffix .d, $(basename $(SRC_BONUS)))\
+# Suprimir la salida de los comandos make
+MAKEFLAGS += --silent
+
+################################################################################
+### COLORS
+################################################################################
+
+DEL_LINE =		\033[2K
+NC		=		\033[0m
+ITALIC =		\033[3m
+BOLD =			\033[1m
+DEF_COLOR =		\033[0;39m
+GRAY =			\033[0;90m
+RED =			\033[0;91m
+GREEN =			\033[0;92m
+YELLOW =		\033[0;93m
+BLUE =			\033[0;94m
+MAGENTA =		\033[0;95m
+CYAN =			\033[0;96m
+WHITE =			\033[0;97m
+BLACK =			\033[0;99m
+ORANGE =		\033[38;5;209m
+BROWN =			\033[38;2;184;143;29m
+DARK_GRAY =		\033[38;5;234m
+MID_GRAY =		\033[38;5;245m
+DARK_GREEN =	\033[38;2;75;179;82m
+DARK_YELLOW =	\033[38;5;143m
+
+################################################################################
+### COMMANDS
+################################################################################
+
+NAME			= cub3D
+NAME_BONUS		= cub3D_bonus
+LIBFT			= Libft/libft.a
+CC				= cc
+FLAGS			= -Wall -Werror -Wextra -fsanitize=address
+RM				= rm -f
+
+SRC				= src/main.c src/error.c src/parser.c src/utils.c
+SRC_BONUS		= src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c
+
+OBJ				= $(SRC:.c=.o)
+OBJ_BONUS		= $(SRC_BONUS:.c=.o)
+
+HEADER			= ./include/cub3d.h
+HEADER_BONUS	= ./include/cub3d_bonus.h
+
+DEPS			= $(OBJ:.o=.d)
+BONUS_DEPS		= $(OBJ_BONUS:.o=.d)
+
+################################################################################
+### RULES
+################################################################################
 
 all: $(NAME)
+	@echo "$(GREEN)$(NAME) is up to date ✓$(DEF_COLOR)\n"
+
+bonus: $(NAME_BONUS)
+	@echo "$(GREEN)$(NAME_BONUS) is up to date ✓$(DEF_COLOR)\n"
+
+$(NAME): libft $(OBJ) $(HEADER)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)Created $(NAME) ✓$(DEF_COLOR)\n"
+
+$(NAME_BONUS): libft $(OBJ_BONUS) $(HEADER_BONUS)
+	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIBFT) -o $(NAME_BONUS)
+	@echo "$(GREEN)Created $(NAME_BONUS) ✓$(DEF_COLOR)\n"
+
+%.o: %.c $(HEADER) Makefile
+	@$(CC) $(FLAGS) -MMD -c $< -o $@
+	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
+
+%.o: $(SRC_BONUS)%.c $(HEADER_BONUS) Makefile
+	@$(CC) $(FLAGS) -MMD -c $< -o $@
+	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
 -include $(DEPS)
-$(NAME): $(OBJ) $(HEADER)
-		@$(CC) $(FLAGS) $(SRC) -o $(NAME)
-	@echo "Executable ready!"
+-include $(BONUS_DEPS)
 
-%.o:%.c Makefile 
-	@$(CC) $(FLAGS) -c $< -o $@
-
-
-libft_make:
+libft:
 	@$(MAKE) -C Libft
 	@echo "$(GREEN)\nCreated $(LIBFT) ✓$(DEF_COLOR)\n"
 
-bonus: $(NAME_BONUS)
-
--include $(BONUS_DEPS)
-$(NAME_BONUS): $(OBJ_BONUS) $(HEADER_BONUS)
-	@$(CC) $(FLAGS) $(SRC_BONUS) -Lmlx_linux -lmlx_Linux -L./mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME_BONUS)
-	@echo "BONUS: Executable ready!"
-	
-%bonus.o:%bonus.c Makefile 
-	@$(CC) $(FLAGS) -Imlx_linux -03 -c $< -o $@
-
 clean:
-	@make -C ./mlx_linux clean
 	@$(RM) $(OBJ) $(OBJ_BONUS)
 	@$(RM) $(DEPS) $(BONUS_DEPS)
-	@echo "Objects and libraries successfully removed"
+	@$(MAKE) -C Libft clean
+	@echo "${RED}Objects and dependencies successfully removed${NC}"
 
 fclean: clean
 	@$(RM) $(NAME) $(NAME_BONUS)
-	@echo "Executable successfully removed"
+	@$(MAKE) -C Libft fclean
+	@echo "${RED}Executables successfully removed${NC}"
 
 re: fclean all
 
-.PHONY: make all clean fclean re bonus
+.PHONY: all clean fclean re bonus libft

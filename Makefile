@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/18 21:21:19 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/22 17:20:33 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,6 @@ OBJ_BONUS		= $(SRC_BONUS:.c=.o)
 HEADER			= ./include/cub3d.h
 HEADER_BONUS	= ./include/cub3d_bonus.h
 
-DEPS			= $(OBJ:.o=.d)
-BONUS_DEPS		= $(OBJ_BONUS:.o=.d)
 
 ################################################################################
 ### RULES
@@ -80,15 +78,12 @@ $(NAME_BONUS): libft $(OBJ_BONUS) $(HEADER_BONUS)
 	@echo "$(GREEN)Created $(NAME_BONUS) ✓$(DEF_COLOR)\n"
 
 %.o: %.c $(HEADER) Makefile
-	@$(CC) $(FLAGS) -MMD -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
 %.o: $(SRC_BONUS)%.c $(HEADER_BONUS) Makefile
 	@$(CC) $(FLAGS) -MMD -c $< -o $@
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
-
--include $(DEPS)
--include $(BONUS_DEPS)
 
 libft:
 	@$(MAKE) -C Libft
@@ -96,7 +91,6 @@ libft:
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_BONUS)
-	@$(RM) $(DEPS) $(BONUS_DEPS)
 	@$(MAKE) -C Libft clean
 	@echo "${RED}Objects and dependencies successfully removed${NC}"
 

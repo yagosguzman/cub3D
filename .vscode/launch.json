@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [	
 		{
-			"name": "(lldb) Launch",
+			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/cub3D",
@@ -14,8 +14,8 @@
 			"cwd": "${fileDirname}",
 			"environment": [],
 			"externalConsole": true,
-			"MIMode": "lldb",
-			"MIDebuggerPath": "/usr/bin/lldb",
+			"MIMode": "gdb",
+			"MIDebuggerPath": "/usr/bin/gdb",
 			"setupCommands": [
 				{
 					"description": "Enable pretty-printing for gdb",

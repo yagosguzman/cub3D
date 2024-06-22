@@ -3,35 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/22 18:22:44 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:18:44 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	ft_isspace(char c)
+static inline bool	ft_isspace(char c)
 {
-	if ((c >= 9 && c <= 13) || c == ' ')
-		return (1);
-	return (0);
+	return ((c >= 9 && c <= 13) || c == ' ');
 }
 
 static int	assign_texture(t_game *game, int key, char *address)
 {
-	if (key == 0 && game->textures->north == NULL)
+	if (key == 0 && !game->textures->north)
 		game->textures->north = address;
-	else if (key == 1 && game->textures->south == NULL)
+	else if (key == 1 && !game->textures->south)
 		game->textures->south = address;
-	else if (key == 2 && game->textures->west == NULL)
+	else if (key == 2 && !game->textures->west)
 		game->textures->west = address;
-	else if (key == 3 && game->textures->east == NULL)
+	else if (key == 3 && !game->textures->east)
 		game->textures->east = address;
-	else if (key == 4 && game->textures->floor == NULL)
+	else if (key == 4 && !game->textures->floor)
 		game->textures->floor = address;
-	else if (key == 5 && game->textures->ceiling == NULL)
+	else if (key == 5 && !game->textures->ceiling)
 		game->textures->ceiling = address;
 	else
 	{
@@ -53,7 +51,7 @@ char	*clean_address(char *address)
 		len++;
 	res = (char *)safe_malloc(len);
 	while (i < len)
-		res[i++] = (*address)++;
+		res[i++] = *(address++);
 	return (res);
 }
 
@@ -62,14 +60,13 @@ static int	check_dir(t_game *game, char *line, int key, int i)
 	char	*address;
 	int		fd;
 
-	while (line[i])
-		while (ft_isspace(line[i]))
-			i++;
+	while (line [i] && ft_isspace(line[i]))
+		i++;
 	address = clean_address((&line[i]));
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_free(address);
+		safe_free((void **)&address);
 		return (1);
 	}
 	close(fd);
@@ -100,46 +97,46 @@ static int	check_identifier(t_game *game, char *line)
 	return (result);
 }
 
-static int	check_specs(t_game *game, char *map_file)
+static int	check_specs(t_game **game, char *map_file)
 {
 	int		fd;
 	char	*line;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		return (ft_error(&game, 7));
+		ft_error(game, 7);
 	line = get_next_line(fd);
 	if (!line)
-		return (ft_error(&game, 7));
+		ft_error(game, 7);
 	while (line != NULL)
 	{
-		if (ft_strlen(line) == 1 && line[0] == '\n')
+		if (!(ft_strlen(line) == 1 && line[0] == '\n')
+			&& check_identifier(*game, line) != 0)
 		{
-			line = get_next_line(fd);
-			continue ;
+			free(line);
+			ft_error(game, 2);
 		}
-		if (check_identifier(game, line) != 0)
-			return (ft_error(&game, 2));
+		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
 }
 
-static int	valid_file(t_game *game, char *file_name)
+static int	valid_file(t_game **game, char *file_name)
 {
 	int	len;
 
 	len = ft_strlen(file_name) - 1;
 	if (file_name[len] != 'b' || file_name[len - 1] != 'u'
 		|| file_name[len - 2] != 'c' || file_name[len - 3] != '.' || len < 4)
-		return (ft_error(&game, 1));
+		ft_error(game, 1);
 	if (check_specs(game, file_name) != 0)
-		return (ft_error(&game, 2));
+		ft_error(game, 2);
 	return (0);
 }
 
-int	checker_exec(t_game *game, char *argv)
+int	checker_exec(t_game **game, char *argv)
 {
 	if (valid_file(game, argv) != 0)
 		return (1);

@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/22 18:34:33 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/22 20:10:35 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ CC				= cc
 FLAGS			= -Wall -Werror -Wextra -g -fsanitize=address
 RM				= rm -f
 
-SRC				= src/main.c src/error.c src/parser.c src/utils.c
+SRC				= src/main.c src/error.c src/parser.c src/utils.c src/data_init.c
 SRC_BONUS		= src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c
 
 OBJ				= $(SRC:.c=.o)

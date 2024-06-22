@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:24:07 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/04/09 23:02:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:04:15 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ size_t				ft_strlen_line(char *s);
 char				*ft_strchr_line(char *s, int c);
 char				*ft_substr_line(char *s, unsigned int start, size_t len);
 char				*ft_strdup_line(char *s);
+void				*ft_free(void *s);
 
 /*
 **  Printf functions

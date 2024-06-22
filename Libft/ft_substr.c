@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42barcel>       +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:10:29 by gpinilla          #+#    #+#             */
-/*   Updated: 2023/06/09 19:53:58 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:57:48 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	leng_s;
 
+	if (!s)
+		return (NULL);
 	leng_s = ft_strlen(s);
 	if (leng_s < start)
 		return (ft_strdup(""));

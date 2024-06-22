@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 21:07:00 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:22:44 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	assign_texture(t_game *game, int key, char *address)
 		game->textures->ceiling = address;
 	else
 	{
-		free(address);
+		ft_free(address);
 		return (1);
 	}
 	return (0);
@@ -69,7 +69,7 @@ static int	check_dir(t_game *game, char *line, int key, int i)
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 	{
-		free (address);
+		ft_free(address);
 		return (1);
 	}
 	close(fd);
@@ -107,10 +107,10 @@ static int	check_specs(t_game *game, char *map_file)
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		return (ft_error(game, 7));
+		return (ft_error(&game, 7));
 	line = get_next_line(fd);
 	if (!line)
-		return (ft_error(game, 7));
+		return (ft_error(&game, 7));
 	while (line != NULL)
 	{
 		if (ft_strlen(line) == 1 && line[0] == '\n')
@@ -119,7 +119,7 @@ static int	check_specs(t_game *game, char *map_file)
 			continue ;
 		}
 		if (check_identifier(game, line) != 0)
-			return (ft_error(game, 2));
+			return (ft_error(&game, 2));
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -133,9 +133,9 @@ static int	valid_file(t_game *game, char *file_name)
 	len = ft_strlen(file_name) - 1;
 	if (file_name[len] != 'b' || file_name[len - 1] != 'u'
 		|| file_name[len - 2] != 'c' || file_name[len - 3] != '.' || len < 4)
-		return (ft_error(game, 1));
+		return (ft_error(&game, 1));
 	if (check_specs(game, file_name) != 0)
-		return (ft_error(game, 2));
+		return (ft_error(&game, 2));
 	return (0);
 }
 

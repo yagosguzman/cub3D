@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 20:13:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:23:02 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ typedef struct s_game
 int		checker_exec(t_game *game, char *argv);
 
 /*###### UTILS.C ######*/
-void	*ft_free(void *ptr);
 void	*safe_malloc(size_t size);
+void 	*safe_free(void **ptr);
 
 /*###### ERROR.C ######*/
-int	ft_error(t_game *game, int errnum);
+int	ft_error(t_game **game, int errnum);
 
 
 

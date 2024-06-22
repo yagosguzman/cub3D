@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:10:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 20:16:15 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:17:39 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	*safe_malloc(size_t size)
 	return (ptr);
 }
 
-void	*ft_free(void *ptr)
+void *safe_free(void **ptr)
 {
-	free(ptr);
-	ptr = NULL;
-	return (ptr);
+	if (ptr && ptr[0])
+	{
+		free(ptr[0]);
+		ptr[0] = NULL;
+	}
+	return (NULL);
 }

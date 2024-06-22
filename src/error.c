@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:17:47 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/18 19:59:52 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:20:54 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_error(t_game *game, int errnum)
+int	ft_error(t_game **game, int errnum)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (errnum == 1)
@@ -31,7 +31,7 @@ int	ft_error(t_game *game, int errnum)
 		ft_putstr_fd("Problem reading the map.\n", 2);
 	if (errnum == 8)
 		ft_putstr_fd("Problem with malloc.\n", 2);
-	ft_free(game);
+	safe_free((void **)game);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/22 17:20:33 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/22 18:34:33 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ $(NAME_BONUS): libft $(OBJ_BONUS) $(HEADER_BONUS)
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
 %.o: $(SRC_BONUS)%.c $(HEADER_BONUS) Makefile
-	@$(CC) $(FLAGS) -MMD -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
 libft:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42barcel>       +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:36:28 by gpinilla          #+#    #+#             */
-/*   Updated: 2023/06/09 17:07:54 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:58:30 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ char	*ft_strdup(const char *s)
 	size_t	slen;
 	char	*result;
 
-	slen = ft_strlen(s);
+	if (s)
+		slen = ft_strlen(s);
+	else
+		slen = 0;
 	result = (char *)malloc(sizeof(char) * (slen + 1));
 	if (!(result))
 		return (0);

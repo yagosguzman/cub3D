@@ -6,7 +6,7 @@
 #    By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/29 13:04:21 by gpinilla          #+#    #+#              #
-#    Updated: 2024/04/22 17:40:24 by gpinilla         ###   ########.fr        #
+#    Updated: 2024/06/22 17:59:22 by gpinilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC				=	ft_memset.c ft_bzero.c ft_strlen.c ft_atoi.c ft_isdigit.c ft_isalpha.c\
 FILESPRINTF		=	characters.c ft_printf.c numbers.c
 SRCPRINTF		=	$(addprefix $(PRINTF),$(FILESPRINTF))
 
-FILESGETLINE 	=	get_next_line_utils.c get_next_line.c
+FILESGETLINE 	=	get_next_line.c
 SRCGETLINE		=	$(addprefix $(GETLINE),$(FILESGETLINE)) 
 
 DIR_OBJ 		=	temp/

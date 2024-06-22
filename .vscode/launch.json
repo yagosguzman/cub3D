@@ -11,9 +11,9 @@
 			"program": "${workspaceFolder}/cub3D",
 			"args": ["${workspaceFolder}/test.cub"],
 			"stopAtEntry": true,
-			"cwd": "${fileDirname}",
+			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"externalConsole": true,
+			"externalConsole": false,
 			"MIMode": "gdb",
 			"MIDebuggerPath": "/usr/bin/gdb",
 			"setupCommands": [

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/22 20:13:11 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/23 12:18:15 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 # include <errno.h>
 # include "../Libft/inc/libft.h"
-# include "../mlx_linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 
 typedef struct s_textures

@@ -6,14 +6,16 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:17:47 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/22 20:01:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/23 13:27:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_error(t_game **game, int errnum)
+void	ft_error(t_game **game, int errnum, char *to_free)
 {
+	if (to_free)
+		ft_free(to_free);
 	ft_putstr_fd("Error\n", 2);
 	if (errnum == 1)
 		ft_putstr_fd("Incorrect map file extension.\n", 2);
@@ -31,6 +33,8 @@ void	ft_error(t_game **game, int errnum)
 		ft_putstr_fd("Problem reading the map.\n", 2);
 	if (errnum == 8)
 		ft_putstr_fd("Problem with malloc.\n", 2);
+	if (errnum == 9)
+		ft_putstr_fd("Incorrect RGB, must be [X,X,X] and from 0 to 255.\n", 2);
 	safe_clean_texture(*game);
 	safe_free((void **)game);
 	exit(errnum);

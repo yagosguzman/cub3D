@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 14:39:12 by gpinilla         ###   ########.fr       */
+/*   Created: 2024/06/23 14:24:26 by gpinilla          #+#    #+#             */
+/*   Updated: 2024/06/23 14:31:55 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+int	ft_close_handler(t_mlx *s_mlx)
 {
-	t_game	*game;
+	// safe_clean_mlx(s_mlx);
+	exit (EXIT_SUCCESS);
+}
 
-	if (argc == 2)
-	{
-		game = ft_calloc(1, sizeof(t_game));
-		init_textures(game);
-		if (checker_exec(&game, argv[1]) == 0)
-			printf("TUDO BEM\n");
-		else
-			printf("OH NO :(\n");
-		game->mlx = init_minilibx();
-		game_loop(game);
-		safe_clean_mlx(game);
-		safe_clean_texture(game);
-		safe_free((void **)&game);
-	}
+int	ft_key_handle(int keysym, t_mlx *s_mlx)
+{
+	printf("se ha pulsado %d", keysym);
+	if (keysym == ESC_PRESS)
+		return (ft_close_handler(s_mlx));
 	return (0);
 }

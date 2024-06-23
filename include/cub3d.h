@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 12:18:15 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/23 14:30:49 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,19 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <errno.h>
+# include <X11/X.h>
 # include "../Libft/inc/libft.h"
 # include "../minilibx-linux/mlx.h"
+
+#define WIDTH 800
+#define HEIGHT 800
+#define ESC_PRESS 65307
+
+typedef struct cub3d
+{
+	void	*mlx;
+	void	*mlx_win;
+}	t_mlx;
 
 
 typedef struct s_textures
@@ -36,7 +47,7 @@ typedef struct s_textures
 
 typedef struct s_game
 {
-	void				*mlx;
+	t_mlx				*mlx;
 	void				*win;
 	t_textures			*textures;
 
@@ -61,6 +72,11 @@ void	ft_error(t_game **game, int errnum);
 void	init_textures(t_game *game);
 void	safe_clean_texture(t_game *game);
 
+t_mlx	*init_minilibx();
+void	safe_clean_mlx(t_game *game);
 
+void	game_loop(t_game *game);
 
+int		ft_key_handle(int keysym, t_mlx *s_mlx);
+int		ft_close_handler(t_mlx *s_mlx);
 #endif

@@ -6,7 +6,7 @@
 #    By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/23 12:19:59 by gpinilla         ###   ########.fr        #
+#    Updated: 2024/06/23 14:35:54 by gpinilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,11 @@ NAME_BONUS      = cub3D_bonus
 LIBFT           = Libft/libft.a
 MINILIBX        = minilibx-linux/libmlx.a
 CC              = gcc
-FLAGS           = -Wall -Werror -Wextra -g -fsanitize=address
+FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=address
 LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
 RM              = rm -rf
 
-SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c
+SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_init.c src/loop_game.c src/hooks_handle.c
 SRC_BONUS       = src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c
 
 DIR_OBJ         = temp/

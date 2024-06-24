@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:17:47 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 13:27:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:49:05 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_error(t_game **game, int errnum, char *to_free)
 	if (errnum == 2)
 		ft_putstr_fd("Unexpected elements or incomplete file.\n", 2);
 	if (errnum == 3)
-		ft_putstr_fd("Unexpected elements on the map.\n", 2);
+		ft_putstr_fd("Problem with opening or creating a file.\n", 2);
 	if (errnum == 4)
 		ft_putstr_fd("The map is not completely surrounded by walls.\n", 2);
 	if (errnum == 5)

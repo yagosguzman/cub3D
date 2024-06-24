@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 13:19:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:57:35 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_error(t_game **game, int errnum, char *to_free);
 
 void	init_textures(t_game *game);
 void	safe_clean_texture(t_game *game);
-void		check_rgb_valid(t_game *game, char *address, int key);
+void	check_rgb_valid(t_game *game, char *address, int key);
+char	*perfect_file(char *file);
 
 #endif

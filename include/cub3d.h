@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 14:30:49 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/25 18:43:22 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,19 @@
 #define WIDTH 800
 #define HEIGHT 800
 #define ESC_PRESS 65307
+#define NORTH_PATH "../textures/DALL·E-2024-06-23-14.54.46-NO.xpm"
+#define SOUTH_PATH "../textures/DALL·E-2024-06-23-14.54.46-SO.xpm"
+#define EAST_PATH "../textures/DALL·E-2024-06-23-14.54.46-ES.xpm"
+#define WEST_PATH "../textures/DALL·E-2024-06-23-14.54.46-WS.xpm"
 
 typedef struct cub3d
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	*no_text;
+	void	*so_text;
+	void	*es_text;
+	void	*ws_text;
 }	t_mlx;
 
 
@@ -47,10 +55,14 @@ typedef struct s_textures
 
 typedef struct s_game
 {
-	t_mlx				*mlx;
-	void				*win;
-	t_textures			*textures;
-
+	t_mlx			*mlx;
+	t_textures		*textures;
+	double			posX;
+	double			posY;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
 }	t_game;
 
 /*###### PARSER.C ######*/
@@ -64,7 +76,7 @@ int		checker_exec(t_game **game, char *argv);
 /*###### UTILS.C ######*/
 void	*safe_malloc(size_t size);
 void 	*safe_free(void **ptr);
-
+void 	safe_clean_cub3D(t_game *game);
 /*###### ERROR.C ######*/
 void	ft_exit_error(void);
 void	ft_error(t_game **game, int errnum);
@@ -72,7 +84,7 @@ void	ft_error(t_game **game, int errnum);
 void	init_textures(t_game *game);
 void	safe_clean_texture(t_game *game);
 
-t_mlx	*init_minilibx();
+t_mlx	*init_minilibx(t_game *game);
 void	safe_clean_mlx(t_game *game);
 
 void	game_loop(t_game *game);

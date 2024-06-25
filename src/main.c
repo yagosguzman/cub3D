@@ -6,11 +6,18 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 14:39:12 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:32:06 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void safe_clean_cub3D(t_game *game)
+{
+	safe_clean_mlx(game);
+	safe_clean_texture(game);
+	safe_free((void **)&game);
+}
 
 int	main(int argc, char **argv)
 {
@@ -23,12 +30,10 @@ int	main(int argc, char **argv)
 		if (checker_exec(&game, argv[1]) == 0)
 			printf("TUDO BEM\n");
 		else
-			printf("OH NO :(\n");
-		game->mlx = init_minilibx();
+			printf("OH NO :\n");
+		game->mlx = init_minilibx(game);
 		game_loop(game);
-		safe_clean_mlx(game);
-		safe_clean_texture(game);
-		safe_free((void **)&game);
+		safe_clean_cub3D(game);
 	}
 	return (0);
 }

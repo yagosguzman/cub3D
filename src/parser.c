@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 14:21:38 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:44:58 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*clean_address(char *address)
 	int		i;
 	int		len;
 	char	*res;
-
+// checker de que termine en .xpm para que no explote
 	i = 0;
 	len = 0;
 	while (address[len] && !ft_isspace(address[len]) && address[len] != '\n')

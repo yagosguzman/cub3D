@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/25 18:27:14 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/25 19:34:55 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,63 +42,82 @@ DARK_YELLOW =	\033[38;5;143m
 ### COMMANDS
 ################################################################################
 
-NAME			= cub3D
-NAME_BONUS		= cub3D_bonus
-LIBFT			= Libft/libft.a
-CC				= cc
-FLAGS			= -Wall -Werror -Wextra -g -fsanitize=address
-RM				= rm -f
+NAME            = cub3D
+NAME_BONUS      = cub3D_bonus
+LIBFT           = Libft/libft.a
+MINILIBX        = minilibx-linux/libmlx.a
+CC              = gcc
+FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=address
+LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
+RM              = rm -rf
 
-SRC				= src/main.c src/error.c src/parser.c src/utils.c src/data_init.c
-SRC_BONUS		= src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c
+SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_init.c src/loop_game.c src/hooks_handle.c
+SRC_BONUS       = src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c
 
-OBJ				= $(SRC:.c=.o)
-OBJ_BONUS		= $(SRC_BONUS:.c=.o)
+DIR_OBJ         = temp/
+DIR_OBJ_BONUS   = temp/bonus/
+OBJ             = $(SRC:src/%.c=$(DIR_OBJ)%.o)
+OBJ_BONUS       = $(SRC_BONUS:src_b/%.c=$(DIR_OBJ_BONUS)%.o)
 
-HEADER			= ./include/cub3d.h
-HEADER_BONUS	= ./include/cub3d_bonus.h
-
+HEADER          = ./include/cub3d.h
+HEADER_BONUS    = ./include/cub3d_bonus.h
 
 ################################################################################
 ### RULES
 ################################################################################
 
-all: $(NAME)
+all: $(DIR_OBJ) libft_make libmlx_make $(NAME)
 	@echo "$(GREEN)$(NAME) is up to date ✓$(DEF_COLOR)\n"
 
-bonus: $(NAME_BONUS)
+bonus: $(DIR_OBJ_BONUS) libft_make libmlx_make $(NAME_BONUS)
 	@echo "$(GREEN)$(NAME_BONUS) is up to date ✓$(DEF_COLOR)\n"
 
-$(NAME): libft $(OBJ) $(HEADER)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)Created $(NAME) ✓$(DEF_COLOR)\n"
+# Crear directorios de objetos
+$(DIR_OBJ):
+	@mkdir -p $(DIR_OBJ)
 
-$(NAME_BONUS): libft $(OBJ_BONUS) $(HEADER_BONUS)
-	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIBFT) -o $(NAME_BONUS)
-	@echo "$(GREEN)Created $(NAME_BONUS) ✓$(DEF_COLOR)\n"
+$(DIR_OBJ_BONUS):
+	@mkdir -p $(DIR_OBJ_BONUS)
 
-%.o: %.c $(HEADER) Makefile
-	@$(CC) $(FLAGS) -c $< -o $@
+$(DIR_OBJ)%.o: src/%.c $(HEADER) Makefile $(LIBFT) | $(DIR_OBJ)
+	@$(CC) $(FLAGS) -Iminilibx-linux -O3 -c $< -o $@
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
-%.o: $(SRC_BONUS)%.c $(HEADER_BONUS) Makefile
-	@$(CC) $(FLAGS) -c $< -o $@
+$(DIR_OBJ_BONUS)%.o: src_b/%.c $(HEADER_BONUS) Makefile $(LIBFT) | $(DIR_OBJ_BONUS)
+	@$(CC) $(FLAGS) -Iminilibx-linux -O3 -c $< -o $@
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
-libft:
+libft_make: $(LIBFT)
+
+$(LIBFT):
 	@$(MAKE) -C Libft
 	@echo "$(GREEN)\nCreated $(LIBFT) ✓$(DEF_COLOR)\n"
 
+libmlx_make: $(MINILIBX)
+
+$(MINILIBX):
+	@$(MAKE) -C minilibx-linux
+	@echo "$(GREEN)\nCreated $(MINILIBX) ✓$(DEF_COLOR)\n"
+
+$(NAME): $(OBJ) $(HEADER) $(LIBFT) $(MINILIBX)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIB_FLAGS) -o $(NAME)
+	@echo "$(GREEN)Created $(NAME) ✓$(DEF_COLOR)\n"
+
+$(NAME_BONUS): $(OBJ_BONUS) $(HEADER_BONUS) $(LIBFT) $(MINILIBX)
+	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIBFT) $(LIB_FLAGS) -o $(NAME_BONUS)
+	@echo "$(GREEN)Created $(NAME_BONUS) ✓$(DEF_COLOR)\n"
+
 clean:
-	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) $(DIR_OBJ) $(DIR_OBJ_BONUS)
+	@$(MAKE) -C minilibx-linux clean
 	@$(MAKE) -C Libft clean
-	@echo "${RED}Objects and dependencies successfully removed${NC}"
+	@echo "${RED}Objects and dependencies successfully removed${DEF_COLOR}"
 
 fclean: clean
 	@$(RM) $(NAME) $(NAME_BONUS)
 	@$(MAKE) -C Libft fclean
-	@echo "${RED}Executables successfully removed${NC}"
+	@echo "${RED}Executables successfully removed${DEF_COLOR}"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus libft
+.PHONY: all clean fclean re bonus libft_make libmlx_make

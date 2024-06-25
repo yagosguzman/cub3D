@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/24 20:57:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:36:38 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,28 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <errno.h>
+# include <X11/X.h>
 # include "../Libft/inc/libft.h"
-# include "../mlx_linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
+
+#define WIDTH 800
+#define HEIGHT 800
+#define ESC_PRESS 65307
+#define NORTH_PATH "../textures/DALL·E-2024-06-23-14.54.46-NO.xpm"
+#define SOUTH_PATH "../textures/DALL·E-2024-06-23-14.54.46-SO.xpm"
+#define EAST_PATH "../textures/DALL·E-2024-06-23-14.54.46-ES.xpm"
+#define WEST_PATH "../textures/DALL·E-2024-06-23-14.54.46-WS.xpm"
+
+typedef struct cub3d
+{
+	void	*mlx;
+	void	*mlx_win;
+	void	*no_text;
+	void	*so_text;
+	void	*es_text;
+	void	*ws_text;
+}	t_mlx;
+
 
 typedef struct s_textures
 {
@@ -35,10 +55,14 @@ typedef struct s_textures
 
 typedef struct s_game
 {
-	void				*mlx;
-	void				*win;
-	t_textures			*textures;
-
+	t_mlx			*mlx;
+	t_textures		*textures;
+	double			posX;
+	double			posY;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
 }	t_game;
 
 /*###### PARSER.C ######*/
@@ -51,8 +75,8 @@ void	checker_exec(t_game **game, char *argv);
 
 /*###### UTILS.C ######*/
 void	*safe_malloc(size_t size);
-void	*safe_free(void **ptr);
-
+void 	*safe_free(void **ptr);
+void 	safe_clean_cub3D(t_game *game);
 /*###### ERROR.C ######*/
 void	ft_exit_error(void);
 void	ft_error(t_game **game, int errnum, char *to_free);
@@ -60,6 +84,11 @@ void	ft_error(t_game **game, int errnum, char *to_free);
 void	init_textures(t_game *game);
 void	safe_clean_texture(t_game *game);
 void	check_rgb_valid(t_game *game, char *address, int key);
-char	*perfect_file(char *file);
+char	*perfect_file(char *file);t_mlx	*init_minilibx(t_game *game);
+void	safe_clean_mlx(t_game *game);
 
+void	game_loop(t_game *game);
+
+int		ft_key_handle(int keysym, t_mlx *s_mlx);
+int		ft_close_handler(t_mlx *s_mlx);
 #endif

@@ -6,11 +6,18 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 18:23:02 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:38:33 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void safe_clean_cub3D(t_game *game)
+{
+	safe_clean_mlx(game);
+	safe_clean_texture(game);
+	safe_free((void **)&game);
+}
 
 int	main(int argc, char **argv)
 {
@@ -26,8 +33,9 @@ int	main(int argc, char **argv)
 			ft_error(&game, 7, NULL);
 		checker_exec(&game, clean_file);
 		printf("Textures path: %s, %s, %s, %s\nRGB codes:\nF: %i,%i,%i\nC: %i,%i,%i\n", game->textures->north, game->textures->south, game->textures->west, game->textures->east, game->textures->floor[0], game->textures->floor[1], game->textures->floor[2], game->textures->ceiling[0], game->textures->ceiling[1], game->textures->ceiling[2]);
-		safe_clean_texture(game);
-		safe_free((void **)&game);
+		game->mlx = init_minilibx(game);
+		game_loop(game);
+		safe_clean_cub3D(game);
 	}
 	return (0);
 }

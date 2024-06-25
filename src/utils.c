@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:10:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/24 21:17:39 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:28:04 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,55 +38,12 @@ void	ft_exit_error(void)
 	exit(errno);
 }
 
-static int	get_line_len(char *line)
-{
-	int	len;
-	int	i;
-
-	i = 0;
-	len = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == '\t')
-			len += 3;
-		len++;
-		i++;
-	}
-	return (len);
-}
-
-static char	*copy_line(char *line, int len)
-{
-	char	*new_line;
-	int		i;
-	int		j;
-	int		space_count;
-
-	i = 0;
-	j = 0;
-	new_line = (char *)safe_malloc(len);
-
-	while (line[i] != '\0')
-	{
-		if (line[i] == '\t')
-		{
-			space_count = -1;
-			while (++space_count < 4)
-				new_line[j++] = ' ';
-			i++;
-		}
-		new_line[j++] = line[i++];
-	}
-	return (new_line);
-}
-
 char	*perfect_file(char *file)
 {
 	char	*new_file;
 	int		fd[2];
 	char	*line;
-	char	*new_line;
-	int		len;
+	int		i;
 
 	new_file = "perfect.cub";
 	fd[0] = open(file, O_RDONLY);
@@ -110,15 +67,24 @@ char	*perfect_file(char *file)
 	}
 	while (line != NULL)
 	{
-		len = get_line_len(line);
-		new_line = copy_line(line, len);
-		write(fd[1], new_line, len);
-		write(fd[1], "\n", 1);
+		i = 0;
+		while (line[i] != '\0')
+		{
+			if (line[i] == '\t')
+			{
+				write(fd[1], "    ", 4);
+				i++;
+			}
+			else
+				write(fd[1], &line[i++], 1);
+		}
 		ft_free(line);
-		ft_free(new_line);
 		line = get_next_line(fd[0]);
+		if (line)
+			write(fd[1], "\n", 1);
 	}
 	close(fd[0]);
 	close(fd[1]);
 	return (new_file);
 }
+	

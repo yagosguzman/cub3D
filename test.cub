@@ -1,4 +1,4 @@
-NO ./ntexture.txt
+NO	./ntexture.txt			
 SO 				./ntexture.txt
 WE ./ntexture.txt
 EA 			./ntexture.txt

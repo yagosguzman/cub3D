@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/25 18:08:37 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:02:38 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@ static void	events_init(t_mlx *s_mlx)
 	mlx_hook(s_mlx->mlx_win, DestroyNotify, StructureNotifyMask, ft_close_handler, s_mlx);
 }
 
-t_mlx	*init_minilibx(t_game *game)
+void	init_minilibx(t_game *game)
 {
-	t_mlx *s_mlx;
-
-	s_mlx = (t_mlx *)safe_malloc(sizeof(t_mlx));
-	s_mlx->mlx = mlx_init();
-	if (!s_mlx->mlx)
-		ft_error(&game, 8);
-	s_mlx->mlx_win = mlx_new_window(s_mlx->mlx, WIDTH, HEIGHT, "cub3D");
-	if (!s_mlx->mlx_win)
-		ft_error(&game, 8);
-	events_init(s_mlx);
-	return (s_mlx);
+	game->mlx = (t_mlx *)safe_malloc(sizeof(t_mlx));
+	game->mlx->mlx = mlx_init();
+	if (!game->mlx->mlx)
+		ft_error(&game, 8, NULL);
+	game->mlx->mlx_win = mlx_new_window(game->mlx->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!game->mlx->mlx_win)
+		ft_error(&game, 8, NULL);
+	events_init(game->mlx);
 }
 
 void	safe_clean_mlx(t_game *game)

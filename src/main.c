@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 19:38:33 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:02:53 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 			ft_error(&game, 7, NULL);
 		checker_exec(&game, clean_file);
 		printf("Textures path: %s, %s, %s, %s\nRGB codes:\nF: %i,%i,%i\nC: %i,%i,%i\n", game->textures->north, game->textures->south, game->textures->west, game->textures->east, game->textures->floor[0], game->textures->floor[1], game->textures->floor[2], game->textures->ceiling[0], game->textures->ceiling[1], game->textures->ceiling[2]);
-		game->mlx = init_minilibx(game);
+		init_minilibx(game);
 		game_loop(game);
 		safe_clean_cub3D(game);
 	}

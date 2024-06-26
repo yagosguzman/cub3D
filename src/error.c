@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:17:47 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/24 20:49:05 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:40:18 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_error(t_game **game, int errnum, char *to_free)
 	if (errnum == 1)
 		ft_putstr_fd("Incorrect map file extension.\n", 2);
 	if (errnum == 2)
-		ft_putstr_fd("Unexpected elements or incomplete file.\n", 2);
+		ft_putstr_fd("Unexpected elements.\n", 2);
 	if (errnum == 3)
-		ft_putstr_fd("Problem with opening or creating a file.\n", 2);
+		ft_putstr_fd("Problem with write.\n", 2);
 	if (errnum == 4)
 		ft_putstr_fd("The map is not completely surrounded by walls.\n", 2);
 	if (errnum == 5)
@@ -30,7 +30,7 @@ void	ft_error(t_game **game, int errnum, char *to_free)
 	if (errnum == 6)
 		ft_putstr_fd("More than one player on the map.\n", 2);
 	if (errnum == 7)
-		ft_putstr_fd("Problem reading the map.\n", 2);
+		ft_putstr_fd("Problem reading the file.\n", 2);
 	if (errnum == 8)
 		ft_putstr_fd("Problem with malloc.\n", 2);
 	if (errnum == 9)

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:28:01 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/25 20:12:47 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/26 20:51:08 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	destroy_win(int keycode, t_mlx *s_mlx)
 void	game_loop(t_game *game)
 {
 	void	*img;
-	char	*path = "textures/TEXT.xpz";
+	char	*path = "textures/TEXT_NO.xpm";
 	int		heigth;
 	int		width;
 

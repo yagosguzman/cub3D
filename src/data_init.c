@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 12:41:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:12:16 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	init_textures(t_game *game)
 	game->textures->south = NULL;
 	game->textures->west = NULL;
 	game->textures->east = NULL;
+	game->textures->floor[0] = -1;
+	game->textures->floor[1] = -1;
+	game->textures->floor[2] = -1;
+	game->textures->ceiling[0] = -1;
+	game->textures->ceiling[1] = -1;
+	game->textures->ceiling[2] = -1;
+
 }
 
 void	safe_clean_texture(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/25 20:02:38 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:49:43 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ void	init_minilibx(t_game *game)
 	game->mlx->mlx = mlx_init();
 	if (!game->mlx->mlx)
 		ft_error(&game, 8, NULL);
-	game->mlx->mlx_win = mlx_new_window(game->mlx->mlx, WIDTH, HEIGHT, "cub3D");
+	game->mlx->mlx_win = mlx_new_window(game->mlx->mlx, SCREENWIDTH, SCREENHEIGHT, "cub3D");
 	if (!game->mlx->mlx_win)
 		ft_error(&game, 8, NULL);
+	game->mlx->plane_x = 0;
+	game->mlx->plane_y = 0.66;
 	events_init(game->mlx);
+
 }
 
 void	safe_clean_mlx(t_game *game)

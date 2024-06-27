@@ -6,11 +6,17 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 14:24:26 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/23 14:31:55 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:51:13 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	destroy_win(int keycode, t_mlx *s_mlx)
+{
+	mlx_destroy_window(s_mlx->mlx, s_mlx->mlx_win);
+	return (0);
+}
 
 int	ft_close_handler(t_mlx *s_mlx)
 {

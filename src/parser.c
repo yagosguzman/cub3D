@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 19:44:58 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:39:46 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	check_rgb_valid(t_game *game, char *address, int key)
 	aux = address;
 	i = -1;
 	if (check_valid_chars(address))
-		ft_error(&game, 2, aux);
+		ft_error(&game, 9, aux);
 	while (address && ++i < 3)
 	{
 		result = ft_atoi(address);
 		if (result < 0 || result > 255)
-			ft_error(&game, 2, aux);
+			ft_error(&game, 9, aux);
 		if (key == 4)
 			game->textures->floor[i] = result;
 		else if (key == 5)
@@ -78,7 +78,7 @@ char	*clean_address(char *address)
 	int		i;
 	int		len;
 	char	*res;
-// checker de que termine en .xpm para que no explote
+
 	i = 0;
 	len = 0;
 	while (address[len] && !ft_isspace(address[len]) && address[len] != '\n')
@@ -87,6 +87,30 @@ char	*clean_address(char *address)
 	while (i < len)
 		res[i++] = *(address++);
 	return (res);
+}
+static int	empty_values(t_game *game, int key)
+{
+	if (key == 4)
+	{
+		if (game->textures->floor[0] < 0 && game->textures->floor[1] < 0
+			&& game->textures->floor[2] < 0)
+			return (1);
+	}
+	else if (key == 5)
+	{
+		if (game->textures->ceiling[0] < 0 && game->textures->ceiling[1] < 0
+			&& game->textures->ceiling[2] < 0)
+			return (1);
+	}
+	return (0);
+}
+
+static int	empty_textures(t_game *game)
+{
+	if (!game->textures->north || !game->textures->south
+		|| !game->textures->west || !game->textures->east)
+		return (1);
+	return (0);
 }
 
 static void	check_dir(t_game *game, char *line, int key, int i)
@@ -98,7 +122,7 @@ static void	check_dir(t_game *game, char *line, int key, int i)
 		i++;
 	address = clean_address((&line[i]));
 	if (*address == '\0')
-		ft_error(&game, 2, address);
+		ft_error(&game, 5, address);
 	if (key <= 3)
 	{
 		fd = open(address, O_RDONLY);
@@ -113,24 +137,32 @@ static void	check_dir(t_game *game, char *line, int key, int i)
 
 static int	check_identifier(t_game *game, char *line)
 {
-	if (!ft_strncmp(line, "NO ", 3))
+	if (!ft_strncmp(line, "NO ", 3) && !game->textures->north)
 		check_dir(game, line, 0, 3);
-	else if (!ft_strncmp(line, "SO ", 3))
+	else if (!ft_strncmp(line, "SO ", 3) && !game->textures->south)
 		check_dir(game, line, 1, 3);
-	else if (!ft_strncmp(line, "WE ", 3))
+	else if (!ft_strncmp(line, "WE ", 3) && !game->textures->west)
 		check_dir(game, line, 2, 3);
-	else if (!ft_strncmp(line, "EA ", 3))
+	else if (!ft_strncmp(line, "EA ", 3) && !game->textures->east)
 		check_dir(game, line, 3, 3);
-	else if (!ft_strncmp(line, "F ", 2))
+	else if (!ft_strncmp(line, "F ", 2) && empty_values(game, 4))
 		check_dir(game, line, 4, 2);
-	else if (!ft_strncmp(line, "C ", 2))
+	else if (!ft_strncmp(line, "C ", 2) && empty_values(game, 5))
 		check_dir(game, line, 5, 2);
 	else
 		return (1);
 	return (0);
 }
 
-static int	check_specs(t_game **game, char *map_file)
+static void	check_complete(t_game **game)
+{
+	if (empty_values(*game, 4) || empty_values(*game, 5))
+		ft_error(game, 5, NULL);
+	if (empty_textures(*game))
+		ft_error(game, 5, NULL);
+}
+
+static void	check_specs(t_game **game, char *map_file)
 {
 	int		fd;
 	char	*line;
@@ -152,9 +184,8 @@ static int	check_specs(t_game **game, char *map_file)
 		ft_free(line);
 		i = 0;
 		line = get_next_line(fd);
-	}
+	} // aqui habria que liberar line antes de salir?
 	close(fd);
-	return (0);
 }
 
 static void	valid_file(t_game **game, char *file_name)
@@ -167,8 +198,9 @@ static void	valid_file(t_game **game, char *file_name)
 		ft_error(game, 1, NULL);
 }
 
-void	checker_exec(t_game **game, char *argv)
+void	checker_exec(t_game **game, char *file)
 {
-	valid_file(game, argv);
-	check_specs(game, argv);
+	valid_file(game, file);
+	check_specs(game, file);
+	check_complete(game);
 }

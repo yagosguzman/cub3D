@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/27 18:02:26 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:08:14 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_game
 {
 	t_mlx			*mlx;
 	t_textures		*textures;
+	char			**map;
 	double			posX;
 	double			posY;
 	double			dirX;
@@ -94,9 +95,8 @@ void	init_textures(t_game *game);
 void	init_map(t_game *game);
 void	safe_clean_texture(t_game *game);
 void	check_rgb_valid(t_game *game, char *address, int key);
-char	*perfect_file(char *file);
+char	*perfect_file(t_game *game, char *file);
 void	safe_clean_mlx(t_game *game);
-
 void	init_minilibx(t_game *game);
 void	game_loop(t_game *game);
 

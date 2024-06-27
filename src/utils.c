@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:10:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 19:28:04 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:41:26 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,25 @@ void	*safe_free(void **ptr)
 	return (NULL);
 }
 
+void	safe_write(t_game *game, int fd, char c)
+{
+	if (write(fd, &c, sizeof(c)) < 0)
+		ft_error(&game, 3, NULL);
+}
+
 void	ft_exit_error(void)
 {
 	perror(NULL);
 	exit(errno);
 }
 
-char	*perfect_file(char *file)
+char	*perfect_file(t_game *game, char *file)
 {
 	char	*new_file;
 	int		fd[2];
 	char	*line;
 	int		i;
+	int		space_count;
 
 	new_file = "perfect.cub";
 	fd[0] = open(file, O_RDONLY);
@@ -72,16 +79,18 @@ char	*perfect_file(char *file)
 		{
 			if (line[i] == '\t')
 			{
-				write(fd[1], "    ", 4);
+				space_count = 0;
+				while (space_count++ < 4)
+					safe_write(game, fd[1], ' ');
 				i++;
 			}
 			else
-				write(fd[1], &line[i++], 1);
+				safe_write(game, fd[1], line[i++]);
 		}
 		ft_free(line);
 		line = get_next_line(fd[0]);
 		if (line)
-			write(fd[1], "\n", 1);
+			safe_write(game, fd[1], '\n');
 	}
 	close(fd[0]);
 	close(fd[1]);

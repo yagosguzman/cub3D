@@ -1,4 +1,7 @@
-NO	./ntexture.txt			
+F           220,100,1
+C           220,100,1
+
+NO	. ./ntexture.txt
 SO 				./ntexture.txt
 WE ./ntexture.txt
 EA 			./ntexture.txt
@@ -16,3 +19,4 @@ C	 225,30,0
 	   111
 	   	 111
 		 1
+

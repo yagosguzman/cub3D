@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/26 21:39:46 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:27:59 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	assign_texture(t_game *game, int key, char *address)
 		game->textures->east = address;
 	else
 		ft_error(&game, 2, address);
+	game->checklist++;
 }
 
 static int	check_valid_chars(char *address)
@@ -70,6 +71,7 @@ void	check_rgb_valid(t_game *game, char *address, int key)
 	}
 	if (*address != '\0' || *(address - 1) == ',')
 		ft_error(&game, 9, aux);
+	game->checklist++;
 	ft_free(aux);
 }
 
@@ -137,17 +139,17 @@ static void	check_dir(t_game *game, char *line, int key, int i)
 
 static int	check_identifier(t_game *game, char *line)
 {
-	if (!ft_strncmp(line, "NO ", 3) && !game->textures->north)
+	if (!ft_strncmp(line, "NO", 2) && ft_isspace(*(line+2)) && !game->textures->north)
 		check_dir(game, line, 0, 3);
-	else if (!ft_strncmp(line, "SO ", 3) && !game->textures->south)
+	else if (!ft_strncmp(line, "SO", 2) && ft_isspace(*(line+2)) && !game->textures->south)
 		check_dir(game, line, 1, 3);
-	else if (!ft_strncmp(line, "WE ", 3) && !game->textures->west)
+	else if (!ft_strncmp(line, "WE", 2) && ft_isspace(*(line+2)) && !game->textures->west)
 		check_dir(game, line, 2, 3);
-	else if (!ft_strncmp(line, "EA ", 3) && !game->textures->east)
+	else if (!ft_strncmp(line, "EA", 2) && ft_isspace(*(line+2)) && !game->textures->east)
 		check_dir(game, line, 3, 3);
-	else if (!ft_strncmp(line, "F ", 2) && empty_values(game, 4))
+	else if (!ft_strncmp(line, "F", 1) && ft_isspace(*(line+1)) && empty_values(game, 4))
 		check_dir(game, line, 4, 2);
-	else if (!ft_strncmp(line, "C ", 2) && empty_values(game, 5))
+	else if (!ft_strncmp(line, "C", 1) && ft_isspace(*(line+1)) && empty_values(game, 5))
 		check_dir(game, line, 5, 2);
 	else
 		return (1);
@@ -175,7 +177,7 @@ static void	check_specs(t_game **game, char *map_file)
 	line = get_next_line(fd);
 	if (!line)
 		ft_error(game, 7, NULL);
-	while (line != NULL)
+	while (line != NULL && (*game)->checklist < 6)
 	{
 		while (line[i] != '\0' && ft_isspace(line[i]))
 			i++;
@@ -184,7 +186,7 @@ static void	check_specs(t_game **game, char *map_file)
 		ft_free(line);
 		i = 0;
 		line = get_next_line(fd);
-	} // aqui habria que liberar line antes de salir?
+	}
 	close(fd);
 }
 

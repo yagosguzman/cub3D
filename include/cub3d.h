@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/27 18:08:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:39:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_game
 {
 	t_mlx			*mlx;
 	t_textures		*textures;
-	char			**map;
+	int				checklist;
 	double			posX;
 	double			posY;
 	double			dirX;

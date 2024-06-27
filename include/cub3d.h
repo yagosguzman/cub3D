@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 19:59:44 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:29:20 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void	ft_error(t_game **game, int errnum, char *to_free);
 void	init_textures(t_game *game);
 void	safe_clean_texture(t_game *game);
 void	check_rgb_valid(t_game *game, char *address, int key);
-char	*perfect_file(char *file);t_mlx	*init_minilibx(t_game *game);
+char	*perfect_file(char *file);
 void	safe_clean_mlx(t_game *game);
 
-t_mlx	*init_minilibx(t_game *game);
+void	init_minilibx(t_game *game);
 void	game_loop(t_game *game);
 
 int		ft_key_handle(int keysym, t_mlx *s_mlx);

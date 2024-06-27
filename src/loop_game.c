@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:28:01 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/25 19:58:38 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:31:05 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	destroy_win(int keycode, t_mlx *s_mlx)
 void	game_loop(t_game *game)
 {
 	void	*img;
-	char	*path = "/textures/TEXT.xpm";
+	char	*path = "textures/TEXT_EA.xpm";
 	int		heigth;
 	int		width;
 

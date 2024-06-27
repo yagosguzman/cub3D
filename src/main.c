@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 20:02:53 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:02:43 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	{
 		game = ft_calloc(1, sizeof(t_game));
 		init_textures(game);
+		init_map(game);
 		clean_file = perfect_file(argv[1]);
 		if (!clean_file)
 			ft_error(&game, 7, NULL);

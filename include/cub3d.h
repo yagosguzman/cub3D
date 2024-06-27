@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/25 20:11:49 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:02:26 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef struct cub3d
 }	t_mlx;
 
 
+typedef struct s_map
+{
+	int		player;
+	int		max_len;
+	char	**w_map;
+}	t_map;
+
 typedef struct s_textures
 {
 	char	*north;
@@ -63,6 +70,8 @@ typedef struct s_game
 	double			dirY;
 	double			planeX;
 	double			planeY;
+	t_map			*map;
+
 }	t_game;
 
 /*###### PARSER.C ######*/
@@ -75,13 +84,14 @@ void	checker_exec(t_game **game, char *argv);
 
 /*###### UTILS.C ######*/
 void	*safe_malloc(size_t size);
-void 	*safe_free(void **ptr);
-void 	safe_clean_cub3D(t_game *game);
+void	*safe_free(void **ptr);
+void	safe_clean_cub3D(t_game *game);
 /*###### ERROR.C ######*/
 void	ft_exit_error(void);
 void	ft_error(t_game **game, int errnum, char *to_free);
 
 void	init_textures(t_game *game);
+void	init_map(t_game *game);
 void	safe_clean_texture(t_game *game);
 void	check_rgb_valid(t_game *game, char *address, int key);
 char	*perfect_file(char *file);

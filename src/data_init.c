@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/23 12:41:16 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:01:31 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	init_textures(t_game *game)
 	game->textures->south = NULL;
 	game->textures->west = NULL;
 	game->textures->east = NULL;
+}
+
+void	init_map(t_game *game)
+{
+	game->map->max_len = -1;
+	game->map->player = -1;
+	game->map->w_map = NULL;
 }
 
 void	safe_clean_texture(t_game *game)

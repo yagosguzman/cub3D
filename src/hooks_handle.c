@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 14:24:26 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/27 19:51:13 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:20:54 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	destroy_win(int keycode, t_mlx *s_mlx)
 {
-	mlx_destroy_window(s_mlx->mlx, s_mlx->mlx_win);
+	mlx_destroy_window(s_mlx->mlx, s_mlx->win);
 	return (0);
 }
 

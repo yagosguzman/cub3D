@@ -6,13 +6,13 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/28 19:13:22 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/28 21:21:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static inline bool	ft_isspace(char c)
+bool	ft_isspace(char c)
 {
 	return ((c >= 9 && c <= 13) || c == ' ');
 }
@@ -133,17 +133,23 @@ static void	check_dir(t_game *game, char *line, int key, int i)
 
 static int	check_identifier(t_game *game, char *line)
 {
-	if (!ft_strncmp(line, "NO", 2) && ft_isspace(*(line+2)) && !game->textures[0].path)
+	if (!ft_strncmp(line, "NO", 2) && ft_isspace(*(line+2))
+		&& !game->textures[0].path)
 		check_dir(game, line, 0, 3);	
-	else if (!ft_strncmp(line, "SO", 2) && ft_isspace(*(line+2)) && !game->textures[1].path)
+	else if (!ft_strncmp(line, "SO", 2) && ft_isspace(*(line+2))
+		&& !game->textures[1].path)
 		check_dir(game, line, 1, 3);
-	else if (!ft_strncmp(line, "WE", 2) && ft_isspace(*(line+2)) && !game->textures[2].path)
+	else if (!ft_strncmp(line, "WE", 2) && ft_isspace(*(line+2))
+		&& !game->textures[2].path)
 		check_dir(game, line, 2, 3);
-	else if (!ft_strncmp(line, "EA", 2) && ft_isspace(*(line+2)) && !game->textures[3].path)
+	else if (!ft_strncmp(line, "EA", 2) && ft_isspace(*(line+2))
+		&& !game->textures[3].path)
 		check_dir(game, line, 3, 3);
-	else if (!ft_strncmp(line, "F", 1) && ft_isspace(*(line+1)) && empty_values(game, 4))
+	else if (!ft_strncmp(line, "F", 1) && ft_isspace(*(line+1))
+		&& empty_values(game, 4))
 		check_dir(game, line, 4, 2);
-	else if (!ft_strncmp(line, "C", 1) && ft_isspace(*(line+1)) && empty_values(game, 5))
+	else if (!ft_strncmp(line, "C", 1) && ft_isspace(*(line+1))
+		&& empty_values(game, 5))
 		check_dir(game, line, 5, 2);
 	else
 		return (1);
@@ -174,13 +180,19 @@ static void	check_specs(t_game **game, char *map_file)
 	while (line != NULL && (*game)->checklist < 6)
 	{
 		while (line[i] != '\0' && ft_isspace(line[i]))
+		{
+			(*game)->read++;
 			i++;
+		}
 		if (line[i] != '\n' && line[i] != '\0' && check_identifier(*game, line) != 0)
 			ft_error(game, 2, line);
+		if (line[0] != '\n')
+			(*game)->read += ft_strlen(line);
 		ft_free(line);
 		i = 0;
-		line = get_next_line(fd);
+		line = get_next_line(fd); // aqui se queda una linea que no se libera al salir del bucle;
 	}
+	map_size(game, fd, line);
 	close(fd);
 }
 

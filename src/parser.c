@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/27 20:27:59 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:13:22 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,8 @@ static inline bool	ft_isspace(char c)
 
 static void	assign_texture(t_game *game, int key, char *address)
 {
-	if (key == 0 && !game->textures->north)
-		game->textures->north = address;
-	else if (key == 1 && !game->textures->south)
-		game->textures->south = address;
-	else if (key == 2 && !game->textures->west)
-		game->textures->west = address;
-	else if (key == 3 && !game->textures->east)
-		game->textures->east = address;
+	if (!game->textures[key].path)
+		game->textures[key].path = address;
 	else
 		ft_error(&game, 2, address);
 	game->checklist++;
@@ -63,9 +57,9 @@ void	check_rgb_valid(t_game *game, char *address, int key)
 		if (result < 0 || result > 255)
 			ft_error(&game, 9, aux);
 		if (key == 4)
-			game->textures->floor[i] = result;
+			game->floor[i] = result;
 		else if (key == 5)
-			game->textures->ceiling[i] = result;
+			game->ceiling[i] = result;
 		while (*address && *(address++) != ',')
 			;
 	}
@@ -94,14 +88,14 @@ static int	empty_values(t_game *game, int key)
 {
 	if (key == 4)
 	{
-		if (game->textures->floor[0] < 0 && game->textures->floor[1] < 0
-			&& game->textures->floor[2] < 0)
+		if (game->floor[0] < 0 && game->floor[1] < 0
+			&& game->floor[2] < 0)
 			return (1);
 	}
 	else if (key == 5)
 	{
-		if (game->textures->ceiling[0] < 0 && game->textures->ceiling[1] < 0
-			&& game->textures->ceiling[2] < 0)
+		if (game->ceiling[0] < 0 && game->ceiling[1] < 0
+			&& game->ceiling[2] < 0)
 			return (1);
 	}
 	return (0);
@@ -109,8 +103,8 @@ static int	empty_values(t_game *game, int key)
 
 static int	empty_textures(t_game *game)
 {
-	if (!game->textures->north || !game->textures->south
-		|| !game->textures->west || !game->textures->east)
+	if (!game->textures[0].path || !game->textures[1].path
+		|| !game->textures[2].path || !game->textures[3].path)
 		return (1);
 	return (0);
 }
@@ -139,13 +133,13 @@ static void	check_dir(t_game *game, char *line, int key, int i)
 
 static int	check_identifier(t_game *game, char *line)
 {
-	if (!ft_strncmp(line, "NO", 2) && ft_isspace(*(line+2)) && !game->textures->north)
-		check_dir(game, line, 0, 3);
-	else if (!ft_strncmp(line, "SO", 2) && ft_isspace(*(line+2)) && !game->textures->south)
+	if (!ft_strncmp(line, "NO", 2) && ft_isspace(*(line+2)) && !game->textures[0].path)
+		check_dir(game, line, 0, 3);	
+	else if (!ft_strncmp(line, "SO", 2) && ft_isspace(*(line+2)) && !game->textures[1].path)
 		check_dir(game, line, 1, 3);
-	else if (!ft_strncmp(line, "WE", 2) && ft_isspace(*(line+2)) && !game->textures->west)
+	else if (!ft_strncmp(line, "WE", 2) && ft_isspace(*(line+2)) && !game->textures[2].path)
 		check_dir(game, line, 2, 3);
-	else if (!ft_strncmp(line, "EA", 2) && ft_isspace(*(line+2)) && !game->textures->east)
+	else if (!ft_strncmp(line, "EA", 2) && ft_isspace(*(line+2)) && !game->textures[3].path)
 		check_dir(game, line, 3, 3);
 	else if (!ft_strncmp(line, "F", 1) && ft_isspace(*(line+1)) && empty_values(game, 4))
 		check_dir(game, line, 4, 2);

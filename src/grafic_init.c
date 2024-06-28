@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grafic_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/27 20:34:09 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:15:29 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	events_init(t_mlx *s_mlx)
 {
-	mlx_hook(s_mlx->mlx_win, KeyPress, KeyPressMask, ft_key_handle, s_mlx);
+	mlx_hook(s_mlx->win, KeyPress, KeyPressMask, ft_key_handle, s_mlx);
 	//mlx_hook(fractal->win_ptr, ButtonPress, ButtonPressMask, ft_mouse_handle, s_mlx);
-	mlx_hook(s_mlx->mlx_win, DestroyNotify, StructureNotifyMask, ft_close_handler, s_mlx);
+	mlx_hook(s_mlx->win, DestroyNotify, StructureNotifyMask, ft_close_handler, s_mlx);
 }
 
 void	init_minilibx(t_game *game)
@@ -25,8 +25,8 @@ void	init_minilibx(t_game *game)
 	game->mlx->mlx = mlx_init();
 	if (!game->mlx->mlx)
 		ft_error(&game, 8, NULL);
-	game->mlx->mlx_win = mlx_new_window(game->mlx->mlx, SCREENWIDTH, SCREENHEIGHT, "cub3D");
-	if (!game->mlx->mlx_win)
+	game->mlx->win = mlx_new_window(game->mlx->mlx, SCREENWIDTH, SCREENHEIGHT, "cub3D");
+	if (!game->mlx->win)
 		ft_error(&game, 8, NULL);
 	game->mlx->plane_x = 0;
 	game->mlx->plane_y = 0.66;
@@ -39,7 +39,7 @@ void	safe_clean_mlx(t_game *game)
 	if (game && game->mlx)
 	{
 		safe_free((void **)&game->mlx->mlx);
-		safe_free((void **)&game->mlx->mlx_win);
+		safe_free((void **)&game->mlx->win);
 		safe_free((void **)&game->mlx);
 	}
 }

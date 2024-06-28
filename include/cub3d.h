@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/27 20:34:01 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:02:55 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Map.h"
+// #include "Map.h"
 
 #ifndef CUB3D_H
 # define CUB3D_H

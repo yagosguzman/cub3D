@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/28 21:57:12 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:09:25 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	map_parser(t_game **game, char *map_file)
 	while (line != NULL)
 	{
 		valid_map_char(game, line);
-		if ((*game)->map->max_wide < ft_strlen(line))
-			(*game)->map->max_wide = ft_strlen(line);
+		if ((*game)->map->map_wide < ft_strlen(line))
+			(*game)->map->map_wide = ft_strlen(line);
+		ft_free(line);
+		line = get_next_line(fd);
 	}
 }
 
@@ -61,11 +63,11 @@ void	map_size(t_game **game, int fd, char *line)
 	{
 		len = ft_strlen(line);
 		valid_map_char(game, line);
-		if ((*game)->map->max_wide < len)
-			(*game)->map->max_wide = len;
-		(*game)->map->len++;
+		if ((*game)->map->map_wide < len)
+			(*game)->map->map_wide = len;
+		(*game)->map->map_height++;
 		ft_free(line);
 		line = get_next_line(fd);
 	}
-	printf("Max wide is %i\nMax len is %i\n", (*game)->map->max_wide, (*game)->map->len);
+	printf("Max wide is %i\nMax len is %i\n", (*game)->map->map_wide, (*game)->map->map_height);
 }

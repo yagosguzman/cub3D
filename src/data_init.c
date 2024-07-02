@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/28 21:26:32 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:10:05 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	init_textures(t_game *game)
 void	init_map(t_game *game)
 {
 	game->map = safe_malloc(sizeof(t_map));
-	game->map->max_wide = -1;
-	game->map->len = -1;
+	game->map->map_wide = -1;
+	game->map->map_height = 0;
 	game->map->player = -1;
 	game->map->w_map = NULL;
 }

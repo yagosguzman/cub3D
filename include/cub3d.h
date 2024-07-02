@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/28 21:22:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:08:27 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct cub3d
 typedef struct s_map
 {
 	int		player;
-	int		max_wide;
-	int		len;
+	int		map_wide;
+	int		map_height;
 	char	**w_map;
 }	t_map;
 

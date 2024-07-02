@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 18:08:27 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:25:33 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define CUB3D_H
 
 # include <unistd.h>
+# include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -28,26 +29,39 @@
 #define SCREENWIDTH 1200
 #define SCREENHEIGHT 1200
 #define ESC_PRESS 65307
-#define NORTH_PATH "../textures/DALL·E-2024-06-23-14.54.46-NO.xpm"
-#define SOUTH_PATH "../textures/DALL·E-2024-06-23-14.54.46-SO.xpm"
-#define EAST_PATH "../textures/DALL·E-2024-06-23-14.54.46-ES.xpm"
-#define WEST_PATH "../textures/DALL·E-2024-06-23-14.54.46-WS.xpm"
+#define NORTH_PATH "textures/TEXT_NO.xpm"
+#define SOUTH_PATH "textures/TEXT_SO.xpm"
+#define EAST_PATH "textures/TEXT_EA.xpm"
+#define WEST_PATH "textures/TEXT_WE.xpm"
 
 #define ESC_PRESS 65307
 typedef struct cub3d
 {
 	void	*mlx;
 	void	*win;
-	double	sidedist_x;
-	double	sidedist_y;
-	double	deltadist_x;
-	double	deltadist_y;
-	double	plane_x;
-	double	plane_y;
-	double	ray_x;
-	double	ray_y;
+	void	*img;
+	int		*data;
+    int		bpp;
+    int		size_line;
+    int		endian;
 }	t_mlx;
 
+typedef struct s_player
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		camera_x;
+	double		sidedist_x;
+	double		sidedist_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		ray_x;
+	double		ray_y;
+}	t_player;
 
 typedef struct s_map
 {
@@ -65,7 +79,8 @@ typedef struct s_textures
     int		bpp;
     int		size_line;
     int		endian;
-
+	int		width;
+	int		height;
 }	t_textures;
 
 typedef struct s_game
@@ -75,13 +90,8 @@ typedef struct s_game
 	int				floor[3];
 	int				ceiling[3];
 	int				checklist;
-	double			posX;
-	double			posY;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
 	t_map			*map;
+	t_player		*player;
 	long long		read;
 }				t_game;
 
@@ -115,6 +125,8 @@ void	map_copy(t_game **game, int fd, char *line);
 
 void	init_minilibx(t_game *game);
 void	game_loop(t_game *game);
+void	castRays(t_game *game);
+void 	initializeGame(t_game *game);
 
 int		ft_key_handle(int keysym, t_mlx *s_mlx);
 int		ft_close_handler(t_mlx *s_mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grafic_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/06/28 19:15:29 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:43:29 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	init_minilibx(t_game *game)
 	game->mlx->win = mlx_new_window(game->mlx->mlx, SCREENWIDTH, SCREENHEIGHT, "cub3D");
 	if (!game->mlx->win)
 		ft_error(&game, 8, NULL);
-	game->mlx->plane_x = 0;
-	game->mlx->plane_y = 0.66;
 	events_init(game->mlx);
 
 }

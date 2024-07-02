@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 18:50:30 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:02:10 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,5 @@ void	checker_exec(t_game **game, char *file)
 {
 	valid_file(game, file);
 	check_specs(game, file);
-	check_complete(game);
+	map_parser(game, file);
 }

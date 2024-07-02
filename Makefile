@@ -6,7 +6,7 @@
 #    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/06/25 19:34:55 by ysanchez         ###   ########.fr        #
+#    Updated: 2024/06/28 21:02:39 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,8 @@ FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=address
 LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
 RM              = rm -rf
 
-SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_init.c src/loop_game.c src/hooks_handle.c
-SRC_BONUS       = src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c
+SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_init.c src/hooks_handle.c src/map_parser.c #src/loop_game.c
+SRC_BONUS       = src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c src/map_parser.c
 
 DIR_OBJ         = temp/
 DIR_OBJ_BONUS   = temp/bonus/

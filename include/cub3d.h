@@ -6,11 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/06/27 20:34:01 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:08:27 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Map.h"
+// #include "Map.h"
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -52,7 +52,8 @@ typedef struct cub3d
 typedef struct s_map
 {
 	int		player;
-	int		max_len;
+	int		map_wide;
+	int		map_height;
 	char	**w_map;
 }	t_map;
 
@@ -81,6 +82,7 @@ typedef struct s_game
 	double			planeX;
 	double			planeY;
 	t_map			*map;
+	long long		read;
 }				t_game;
 
 /*###### PARSER.C ######*/
@@ -92,9 +94,11 @@ typedef struct s_game
 void	checker_exec(t_game **game, char *argv);
 
 /*###### UTILS.C ######*/
-void	*safe_malloc(size_t size);
-void	*safe_free(void **ptr);
-void	safe_clean_cub3D(t_game *game);
+void		*safe_malloc(size_t size);
+void		*safe_free(void **ptr);
+void		safe_clean_cub3D(t_game *game);
+bool	ft_isspace(char c);
+
 /*###### ERROR.C ######*/
 void	ft_exit_error(void);
 void	ft_error(t_game **game, int errnum, char *to_free);
@@ -105,6 +109,9 @@ void	safe_clean_texture(t_game *game);
 void	check_rgb_valid(t_game *game, char *address, int key);
 char	*perfect_file(t_game *game, char *file);
 void	safe_clean_mlx(t_game *game);
+
+void	map_parser(t_game **game, char *map_file);
+void	map_copy(t_game **game, int fd, char *line);
 
 void	init_minilibx(t_game *game);
 void	game_loop(t_game *game);

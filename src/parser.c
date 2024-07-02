@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 18:03:54 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:50:30 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,16 +180,13 @@ static void	check_specs(t_game **game, char *map_file)
 	while (line != NULL && (*game)->checklist < 6)
 	{
 		while (line[i] != '\0' && ft_isspace(line[i]))
-		{
-			//(*game)->read++;
 			i++;
-		}
 		if (line[i] != '\n' && line[i] != '\0' && check_identifier(*game, line) != 0)
 			ft_error(game, 2, line);
 		(*game)->read += ft_strlen(line);
 		ft_free(line);
 		i = 0;
-		line = get_next_line(fd); // aqui se queda una linea que no se libera al salir del bucle;
+		line = get_next_line(fd);
 	}
 	map_size(game, fd, line);
 	close(fd);

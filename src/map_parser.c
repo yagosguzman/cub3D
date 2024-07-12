@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 20:05:44 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:24:51 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	map_parser(t_game **game, char *map_file)
 	char	*line;
 	int		i;
 	int		j;
+	int		k;
 	char	*buff;
+	int		tab_pos;
 
 	i = 0;
-	j = 0;
-	
 	buff = safe_malloc((*game)->read);
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
@@ -56,13 +56,47 @@ void	map_parser(t_game **game, char *map_file)
 	line = get_next_line(fd);
 	if (!line)
 		ft_error(game, 7, NULL);
-	while (line != NULL && !line[i])
+	while (line != NULL && line[i])
 	{
-		i = 0;
-
+		j = 0;
+		k = 0;
+		while (line[k] && line[k] != '\n')
+		{
+			if (line[k] == '\t')
+			{
+				tab_pos = 4 - (j % 4);
+				while (tab_pos-- > 0)
+					(*game)->map->w_map[i][j++] = ' ';
+				k++;
+			}
+			else
+				(*game)->map->w_map[i][j++] = line[k++];
+		}
 		ft_free(line);
 		line = get_next_line(fd);
+		i++;
 	}
+	i = 0;
+	while ((*game)->map->w_map)
+		printf("%s\n", (*game)->map->w_map[i++]);
+}
+
+static int	check_tabs(char *line)
+{
+	int	result;
+	int	i;
+
+	i = 0;
+	result = 0;
+	if (!ft_strchr(line, '\t'))
+		return (0);
+	while (line[i])
+	{
+		if (line[i] == '\t')
+			result += (4 - (i % 4)) - 1;
+		i++;
+	}
+	return (result);
 }
 
 void	map_size(t_game **game, int fd, char *line)
@@ -79,7 +113,10 @@ void	map_size(t_game **game, int fd, char *line)
 	}
 	while (line != NULL)
 	{
-		len = ft_strlen(line) - 1;
+		if (!ft_strchr(line, '1'))
+			ft_error(game, 4, line);
+		len = check_tabs(line);
+		len += ft_strlen(line) - 1;
 		valid_map_char(*game, line);
 		if ((*game)->map->map_wide < len)
 			(*game)->map->map_wide = len;
@@ -87,10 +124,10 @@ void	map_size(t_game **game, int fd, char *line)
 		ft_free(line);
 		line = get_next_line(fd);
 	}
-	(*game)->map->w_map = 
-		(char **)safe_malloc(sizeof((*game)->map->map_height));
+	(*game)->map->w_map
+		= (char **)safe_malloc(sizeof((*game)->map->map_height));
 	while (++i < (*game)->map->map_height)
-		(*game)->map->w_map[i] = 
-			(char *)safe_malloc(sizeof((*game)->map->map_wide));
+		(*game)->map->w_map[i] 
+			= (char *)safe_malloc(sizeof((*game)->map->map_wide));
 	printf("Max wide is %i\nMax len is %i\n", (*game)->map->map_wide, (*game)->map->map_height);
 }

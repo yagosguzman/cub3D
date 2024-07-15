@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:36:41 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/14 11:57:55 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:07:23 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	initialize_player(t_game *game)
 {
 	t_player	*player;
 
-	player = (t_player *)malloc(sizeof(t_player));
+	player = (t_player *)safe_malloc(sizeof(t_player));
 	player->pos_x = 22.0;
 	player->pos_y = 12.0;
 	player->dir_x = -1.0;
@@ -32,10 +32,10 @@ void	initialize_map(t_game *game)
 	int		i;
 	int		j;
 
-	map = (t_map *)malloc(sizeof(t_map));
+	map = (t_map *)safe_malloc(sizeof(t_map));
 	map->map_wide = 24;
 	map->map_height = 24;
-	map->w_map = (char **)malloc(map->map_wide * sizeof(char *));
+	map->w_map = (char **)safe_malloc(map->map_wide * sizeof(char *));
 	i = -1;
 	while (++i < map->map_wide)
 	{
@@ -73,7 +73,7 @@ void	initialize_textures(t_game *game)
 		if (!textures[i].img) 
 		{
 			printf("Error loading texture %d\n", i);
-			exit(1);
+			ft_exit_error(1);
 		}
 		textures[i].data = (int *)mlx_get_data_addr(textures[i].img,
 				&textures[i].bpp, &textures[i].size_line,

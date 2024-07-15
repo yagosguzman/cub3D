@@ -6,11 +6,23 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/14 15:28:27 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:17:36 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static int	rgb_to_hex(int rgb[3])
+{
+	int	red;
+	int	green;
+	int	blue;
+
+	red = rgb[0];
+	green = rgb[1];
+	blue = rgb[2];
+	return ((red << 16) | (green << 8) | blue);
+}
 
 int	handle_keypress(int keycode, t_game *game)
 {
@@ -30,21 +42,17 @@ void	clear_screen(t_game *game)
 {
 	int	x;
 	int	y;
-	int	screenwidth;
-	int	screenheight;
 
-	screenwidth = SCREENWIDTH;
-	screenheight = SCREENHEIGHT;
 	y = -1;
-	while (++y < screenheight)
+	while (++y < SCREENHEIGHT)
 	{
 		x = -1;
-		while (++x < screenwidth)
+		while (++x < SCREENWIDTH)
 		{
-			if (y < screenheight / 2)
-				game->mlx->data[y * screenwidth + x] = 0x87CEEB;
+			if (y < SCREENHEIGHT / 2)
+				game->mlx->data[y * SCREENWIDTH + x] = rgb_to_hex(game->ceiling);
 			else
-				game->mlx->data[y * screenwidth + x] = 0xCCCCCC;
+				game->mlx->data[y * SCREENWIDTH + x] = rgb_to_hex(game->floor);
 		}
 	}
 }

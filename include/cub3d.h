@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/14 13:45:41 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:06:20 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,7 @@ void	safe_clean_mlx(t_game *game);
 void	map_parser(t_game **game, char *map_file);
 void	map_copy(t_game **game, int fd, char *line);
 
-void	init_minilibx(t_game *game);
 void	game_loop(t_game *game);
-void	cast_rays(t_game *game);
-void 	initialize_game(t_game *game);
-
-int		ft_key_handle(int keysym, t_game *game);
-int		ft_close_handler(t_mlx *s_mlx);
-
 void 	initialize_game(t_game *game);
 void 	cast_rays(t_game *game);
 void 	clear_screen(t_game *game);

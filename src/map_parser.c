@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/12 21:24:51 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:51:24 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,27 @@ void	map_parser(t_game **game, char *map_file)
 			else
 				(*game)->map->w_map[i][j++] = line[k++];
 		}
+		while (j < (*game)->map->map_wide)
+		{
+			(*game)->map->w_map[i][j] = ' ';
+			j++;
+		}
 		ft_free(line);
 		line = get_next_line(fd);
 		i++;
 	}
 	i = 0;
 	while ((*game)->map->w_map)
-		printf("%s\n", (*game)->map->w_map[i++]);
+		printf("%s.\n", (*game)->map->w_map[i++]);
 }
 
 static int	check_tabs(char *line)
 {
 	int	result;
+	int	tabs;
 	int	i;
 
+	tabs = 0;
 	i = 0;
 	result = 0;
 	if (!ft_strchr(line, '\t'))
@@ -93,9 +100,16 @@ static int	check_tabs(char *line)
 	while (line[i])
 	{
 		if (line[i] == '\t')
-			result += (4 - (i % 4)) - 1;
+		{
+			if (line[i -1] == '\t')
+				result += 4;
+			else
+				result += (4 - (i % 4));
+			tabs++;
+		}
 		i++;
 	}
+	result -= (tabs + 1);
 	return (result);
 }
 
@@ -116,7 +130,7 @@ void	map_size(t_game **game, int fd, char *line)
 		if (!ft_strchr(line, '1'))
 			ft_error(game, 4, line);
 		len = check_tabs(line);
-		len += ft_strlen(line) - 1;
+		len += ft_strlen(line);
 		valid_map_char(*game, line);
 		if ((*game)->map->map_wide < len)
 			(*game)->map->map_wide = len;

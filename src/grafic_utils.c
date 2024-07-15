@@ -1,35 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grafic_init.c                                      :+:      :+:    :+:   */
+/*   grafic_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/02 19:01:03 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/14 15:28:27 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	events_init(t_mlx *s_mlx)
+int	handle_keypress(int keycode, t_game *game)
 {
-	mlx_hook(s_mlx->win, KeyPress, KeyPressMask, ft_key_handle, s_mlx);
-	//mlx_hook(fractal->win_ptr, ButtonPress, ButtonPressMask, ft_mouse_handle, s_mlx);
-	mlx_hook(s_mlx->win, DestroyNotify, StructureNotifyMask, ft_close_handler, s_mlx);
+	if (keycode == ESC_PRESS)
+		exit(0);
+	set_key_state(&game->keys, keycode, 1);
+	return (0);
 }
 
-void	init_minilibx(t_game *game)
+int	handle_keyrelease(int keycode, t_game *game)
 {
-	game->mlx = (t_mlx *)safe_malloc(sizeof(t_mlx));
-	game->mlx->mlx = mlx_init();
-	if (!game->mlx->mlx)
-		ft_error(&game, 8, NULL);
-	game->mlx->win = mlx_new_window(game->mlx->mlx, SCREENWIDTH, SCREENHEIGHT, "cub3D");
-	if (!game->mlx->win)
-		ft_error(&game, 8, NULL);
-	events_init(game->mlx);
+	set_key_state(&game->keys, keycode, 0);
+	return (0);
+}
 
+void	clear_screen(t_game *game)
+{
+	int	x;
+	int	y;
+	int	screenwidth;
+	int	screenheight;
+
+	screenwidth = SCREENWIDTH;
+	screenheight = SCREENHEIGHT;
+	y = -1;
+	while (++y < screenheight)
+	{
+		x = -1;
+		while (++x < screenwidth)
+		{
+			if (y < screenheight / 2)
+				game->mlx->data[y * screenwidth + x] = 0x87CEEB;
+			else
+				game->mlx->data[y * screenwidth + x] = 0xCCCCCC;
+		}
+	}
 }
 
 void	safe_clean_mlx(t_game *game)

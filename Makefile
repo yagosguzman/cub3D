@@ -6,7 +6,7 @@
 #    By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/07/02 19:02:12 by gpinilla         ###   ########.fr        #
+#    Updated: 2024/07/14 11:15:27 by gpinilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ LIBFT           = Libft/libft.a
 MINILIBX        = minilibx-linux/libmlx.a
 CC              = gcc
 FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=address
-LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
+LIB_FLAGS       =  
 RM              = rm -rf
 
 SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_init.c src/hooks_handle.c src/map_parser.c src/loop_game.c src/raycast.c

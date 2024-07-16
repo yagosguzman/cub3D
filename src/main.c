@@ -6,13 +6,13 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 20:35:47 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 23:56:31 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void safe_clean_cub3D(t_game *game)
+void	safe_clean_cub3d(t_game *game)
 {
 	safe_clean_mlx(game);
 	safe_clean_texture(game);
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 		init_map(game);
 		checker_exec(&game, argv[1]);
 		game_loop(game);
-		safe_clean_cub3D(game);
+		safe_clean_cub3d(game);
 	}
 	return (0);
 }

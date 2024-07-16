@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:36:41 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 20:22:37 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 23:56:47 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ void	initialize_game(t_game *game)
 	game->mlx->data = (int *)mlx_get_data_addr(game->mlx->img,
 			&game->mlx->bpp, &game->mlx->size_line,
 			&game->mlx->endian);
-	game->keys = NULL;// Inicializar la lista de teclas a NULL
+	game->keys = NULL;
 }

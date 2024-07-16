@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 21:03:56 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 23:56:31 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
 
 #define SCREENWIDTH 1200
 #define SCREENHEIGHT 1200
-#define MOVE_SPEED 0.01
-#define ROT_SPEED 0.005
+#define MOVE_SPEED 0.05
+#define ROT_SPEED 0.05
 #define MOUSE_SENSITIVITY 0.00004
+#define HITBOX_MARGIN 0.1
 
 #define ESC_PRESS 65307
 #define W_KEY 119
@@ -141,7 +142,7 @@ void	checker_exec(t_game **game, char *argv);
 /*###### UTILS.C ######*/
 void		*safe_malloc(size_t size);
 void		*safe_free(void **ptr);
-void		safe_clean_cub3D(t_game *game);
+void		safe_clean_cub3d(t_game *game);
 bool	ft_isspace(char c);
 
 /*###### ERROR.C ######*/

@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 19:57:57 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 23:10:26 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void	init_map(t_game *game)
 	game->map->w_map = NULL;
 }
 
-void	init_player(t_game *game, char c, int i, int j)
+void	init_player(t_game *game, char c, int x, int y)
 {
-	game->player->pos_x = i;
-	game->player->pos_y = j;
+	game->player->pos_x = x + 0.5; // Posicionar el jugador en el centro de la celda
+	game->player->pos_y = y + 0.5; // Posicionar el jugador en el centro de la celda
+
 	if (c == 'N')
 	{
 		game->player->dir_x = 1;
@@ -61,6 +62,8 @@ void	init_player(t_game *game, char c, int i, int j)
 		game->player->dir_y = 1;
 	}
 }
+
+
 
 void	safe_clean_texture(t_game *game)
 {

@@ -6,11 +6,18 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:28:01 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 20:09:24 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 23:57:06 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx->mlx, game->mlx->win);
+	exit(0);
+	return (0);
+}
 
 int	game_loop_hooks(t_game *game)
 {
@@ -37,6 +44,7 @@ void	game_loop(t_game *game)
 	mlx_hook(game->mlx->win, 2, 1L << 0, handle_keypress, game);
 	mlx_hook(game->mlx->win, 3, 1L << 1, handle_keyrelease, game);
 	mlx_hook(game->mlx->win, 6, 1L << 6, handle_mouse, game);
+	mlx_hook(game->mlx->win, 17, 0L, close_window, game);
 	mlx_mouse_hide(game->mlx->mlx, game->mlx->win);
 	mlx_mouse_move(game->mlx->mlx, game->mlx->win,
 		SCREENWIDTH / 2, SCREENHEIGHT / 2);

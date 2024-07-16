@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 19:32:46 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 20:10:07 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 23:57:35 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ int	handle_mouse(int x, int y, t_game *game)
 	last_x = x;
 	return (0);
 }
-

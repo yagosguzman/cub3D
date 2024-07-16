@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 19:58:15 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:06:36 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	rgb_to_hex(int rgb[3])
 
 int	handle_keypress(int keycode, t_game *game)
 {
+	printf("se ha pulsado %d\n", keycode);
 	if (keycode == ESC_PRESS)
 		exit(0);
 	set_key_state(&game->keys, keycode, 1);

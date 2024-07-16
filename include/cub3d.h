@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 19:57:46 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:03:56 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,9 @@
 
 #define SCREENWIDTH 1200
 #define SCREENHEIGHT 1200
-#define NORTH_PATH "textures/TEXT_NO.xpm"
-#define SOUTH_PATH "textures/TEXT_SO.xpm"
-#define EAST_PATH "textures/TEXT_EA.xpm"
-#define WEST_PATH "textures/TEXT_WE.xpm"
 #define MOVE_SPEED 0.01
 #define ROT_SPEED 0.005
-#define MOUSE_SENSITIVITY 0.004
+#define MOUSE_SENSITIVITY 0.00004
 
 #define ESC_PRESS 65307
 #define W_KEY 119
@@ -86,7 +82,6 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int		player;
 	int		map_wide;
 	int		map_height;
 	char	**w_map;
@@ -172,9 +167,10 @@ void 	calculate_step_and_side_dist(t_game *game, t_ray *ray, t_player *player);
 void 	perform_dda(t_game *game, t_ray *ray);
 void 	calculate_wall_distance(t_ray *ray, t_player *player);
 void 	draw_walls(t_game *game, t_ray *ray, int x);
-void 	determine_texture(t_game *game, t_ray *ray, t_textures *texture);
-void 	calculate_texture_coordinates(t_game *game, t_ray *ray, t_textures *texture, int *texx);
-void 	draw_line(t_game *game, t_textures *texture, int x, int drawstart, int drawend, int texx);
+void	determine_texture(t_game *game, t_ray *ray, t_draw_params *params);
+void	calculate_texture_coordinates(t_game *game,
+				t_ray *ray, t_draw_params *params);
+void	draw_line(t_game *game, t_draw_params *params);
 void 	move_forward_backward(t_game *game, int keycode);
 void 	move_left_right(t_game *game, int keycode);
 void 	rotate_left(t_player *player, double speed);

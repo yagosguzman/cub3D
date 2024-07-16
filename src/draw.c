@@ -6,11 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:43:03 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/14 15:27:48 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:09:43 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	determine_texture(t_game *game, t_ray *ray, t_draw_params *params)
 {

@@ -6,11 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 19:18:34 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/14 12:09:47 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:09:53 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 t_key_node	*create_key_node(int keycode)
 {

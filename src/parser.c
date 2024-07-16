@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 20:02:10 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:46:21 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,4 +207,7 @@ void	checker_exec(t_game **game, char *file)
 	valid_file(game, file);
 	check_specs(game, file);
 	map_parser(game, file);
+	int i = 0;
+	while (i<6)
+		printf("%s.\n", (*game)->map->w_map[i++]);
 }

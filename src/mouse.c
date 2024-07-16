@@ -6,11 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 19:32:46 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/15 17:03:09 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:10:07 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int	destroy_win(int keycode, t_mlx *s_mlx)
 {

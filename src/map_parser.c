@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 19:51:22 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:02:13 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	map_parser(t_game **game, char *map_file)
 	int		tab_pos;
 
 	i = 0;
+	k = 0;
+	j = 0;
 	buff = safe_malloc((*game)->read);
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
@@ -69,10 +71,8 @@ void	map_parser(t_game **game, char *map_file)
 	line = get_next_line(fd);
 	if (!line)
 		ft_error(game, 7, NULL);
-	while (line != NULL && line[i])
+	while (line != NULL && line[k])
 	{
-		j = 0;
-		k = 0;
 		while (line[k] && line[k] != '\n')
 		{
 			if (line[k] == '\t')
@@ -94,10 +94,9 @@ void	map_parser(t_game **game, char *map_file)
 		ft_free(line);
 		line = get_next_line(fd);
 		i++;
+		j = 0;
+		k = 0;
 	}
-	i = 0;
-	while ((*game)->map->w_map)
-		printf("%s.\n", (*game)->map->w_map[i++]);
 }
 
 static int	check_size(char *line)
@@ -145,9 +144,8 @@ void	map_size(t_game **game, int fd, char *line)
 		line = get_next_line(fd);
 	}
 	(*game)->map->w_map
-		= (char **)safe_malloc(sizeof((*game)->map->map_height));
+		= (char **)safe_malloc(sizeof(char *) * (*game)->map->map_height);
 	while (++i < (*game)->map->map_height)
 		(*game)->map->w_map[i] 
-			= (char *)safe_malloc(sizeof((*game)->map->map_wide));
-	printf("Max wide is %i\nMax len is %i\n", (*game)->map->map_wide, (*game)->map->map_height);
+			= (char *)safe_malloc(sizeof(char) * (*game)->map->map_wide);
 }

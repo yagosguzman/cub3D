@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/15 17:05:43 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:35:47 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	main(int argc, char **argv)
 		init_textures(game);
 		init_map(game);
 		checker_exec(&game, argv[1]);
-		printf("Textures path: %s, %s, %s, %s\nRGB codes:\nF: %i,%i,%i\nC: %i,%i,%i\n", game->textures[0].path, game->textures[1].path, game->textures[2].path, game->textures[3].path, game->floor[0], game->floor[1], game->floor[2], game->ceiling[0], game->ceiling[1], game->ceiling[2]);
-		map_parser(&game, argv[1]);
 		game_loop(game);
 		safe_clean_cub3D(game);
 	}

@@ -6,11 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:38:06 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/14 15:28:35 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:09:48 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	move_forward_backward(t_game *game, int keycode)
 {

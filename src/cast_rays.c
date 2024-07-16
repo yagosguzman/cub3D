@@ -6,11 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:37:18 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/14 13:06:20 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:43:39 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void	calculate_step_and_side_dist(t_game *game, t_ray *ray, t_player *player)
 {
@@ -55,7 +55,8 @@ void	perform_dda(t_game *game, t_ray *ray)
 			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (map->w_map[ray->mapx][ray->mapy] > 0)
+		//printf("%c.\n", map->w_map[ray->mapx][ray->mapy]);
+		if (map->w_map[ray->mapx][ray->mapy] == '1')
 			ray->hit = 1;
 	}
 }

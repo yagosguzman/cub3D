@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/15 21:51:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:08:28 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ static void	valid_map_char(t_game *game, char *line)
 	}
 }
 
+void	tab_to_space(char *w_map, int *j, int *k)
+{
+	int nbr_space;
+	int i;
+
+	i = -1;
+	nbr_space = 4 - (*j % 4);
+	while (++i < nbr_space)
+		w_map[(*j)++] = ' ';
+	(*k)++;
+}
+
 void	map_parser(t_game **game, char *map_file)
 {
 	int		fd;
@@ -53,6 +65,8 @@ void	map_parser(t_game **game, char *map_file)
 	if (read(fd, buff, (*game)->read) < 0)
 		ft_error(game, 7, buff);
 	ft_free(buff);
+
+	
 	line = get_next_line(fd);
 	if (!line)
 		ft_error(game, 7, NULL);
@@ -63,12 +77,7 @@ void	map_parser(t_game **game, char *map_file)
 		while (line[k] && line[k] != '\n')
 		{
 			if (line[k] == '\t')
-			{
-				tab_pos = 4 - (j % 4);
-				while (tab_pos-- > 0)
-					(*game)->map->w_map[i][j++] = ' ';
-				k++;
-			}
+				tab_to_space ((*game)->map->w_map[i], &j, &k);
 			else
 				(*game)->map->w_map[i][j++] = line[k++];
 		}
@@ -89,10 +98,10 @@ void	map_parser(t_game **game, char *map_file)
 static int	check_tabs(char *line)
 {
 	int	result;
-	int	tabs;
+	// int	tabs;
 	int	i;
 
-	tabs = 0;
+	// tabs = 0;
 	i = 0;
 	result = 0;
 	if (!ft_strchr(line, '\t'))
@@ -101,15 +110,12 @@ static int	check_tabs(char *line)
 	{
 		if (line[i] == '\t')
 		{
-			if (line[i -1] == '\t')
-				result += 4;
-			else
-				result += (4 - (i % 4));
-			tabs++;
+			result += (4 - (result % 4));
+			// tabs++;
 		}
 		i++;
 	}
-	result -= (tabs + 1);
+	// result -= (tabs + 1);
 	return (result);
 }
 
@@ -130,6 +136,7 @@ void	map_size(t_game **game, int fd, char *line)
 		if (!ft_strchr(line, '1'))
 			ft_error(game, 4, line);
 		len = check_tabs(line);
+		if len != 0
 		len += ft_strlen(line);
 		valid_map_char(*game, line);
 		if ((*game)->map->map_wide < len)

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 19:06:55 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:43:12 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,30 @@ void	init_map(t_game *game)
 	game->map->w_map = NULL;
 }
 
-void	init_player(t_game *game)
+void	init_player(t_game *game, char c, int i, int j)
 {
-	safe_malloc(sizeof(t_player));
+	game->player->pos_x = i;
+	game->player->pos_y = j;
+	if (c == 'N')
+	{
+		game->player->dir_x = 1;
+		game->player->dir_y = 0;
+	}
+	else if (c == 'S')
+	{
+		game->player->dir_x = -1;
+		game->player->dir_y = 0;
+	}
+	else if (c == 'W')
+	{
+		game->player->dir_x = 0;
+		game->player->dir_y = -1;
+	}
+	else if (c == 'E')
+	{
+		game->player->dir_x = 0;
+		game->player->dir_y = 1;
+	}
 }
 
 void	safe_clean_texture(t_game *game)

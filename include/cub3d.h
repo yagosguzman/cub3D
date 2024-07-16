@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/02 19:44:32 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:42:52 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	ft_error(t_game **game, int errnum, char *to_free);
 
 void	init_textures(t_game *game);
 void	init_map(t_game *game);
-void	init_player(t_game *game);
+void	init_player(t_game *game, char c, int i, int j);
 void	safe_clean_texture(t_game *game);
 void	check_rgb_valid(t_game *game, char *address, int key);
 char	*perfect_file(t_game *game, char *file);

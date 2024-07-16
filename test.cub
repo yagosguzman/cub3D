@@ -11,7 +11,15 @@ NO .
 SO .
 WE .
 EA .
-     
-1		  	
-11
+
+condiciones:
+no puedo haber 0 en ningun eextremo, ni filas ni columnas.
+Los ceros tienen que estar rodeador de  0, 1 ,N, S, W, E.
+
+ 111111111111111111111111111111111
+ 100000000000000 000000000001
+ 1111111111111111111111111111
+ 101    100001
+ 111	111111	  	
+101
 111

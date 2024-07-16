@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:36:41 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/15 17:07:23 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:33:56 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	initialize_player(t_game *game)
 {
 	t_player	*player;
+	double		fov;
 
+	fov = 0.66;
 	player = (t_player *)safe_malloc(sizeof(t_player));
 	player->pos_x = 22.0;
 	player->pos_y = 12.0;
 	player->dir_x = -1.0;
 	player->dir_y = 0.0;
-	player->plane_x = 0.0;
-	player->plane_y = 0.66;
+	player->plane_x = -dir_y * fov;
+	player->plane_y = dir_x * fov;
 	game->player = player;
 }
 

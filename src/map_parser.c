@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 21:02:13 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:07:28 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	valid_map_char(t_game *game, char *line)
 
 void	tab_to_space(char *w_map, int *j, int *k)
 {
-	int nbr_space;
-	int i;
+	int	nbr_space;
+	int	i;
 
 	i = -1;
 	nbr_space = 4 - (*j % 4);
@@ -55,7 +55,6 @@ void	map_parser(t_game **game, char *map_file)
 	int		j;
 	int		k;
 	char	*buff;
-	int		tab_pos;
 
 	i = 0;
 	k = 0;
@@ -67,7 +66,6 @@ void	map_parser(t_game **game, char *map_file)
 	if (read(fd, buff, (*game)->read) < 0)
 		ft_error(game, 7, buff);
 	ft_free(buff);
-
 	line = get_next_line(fd);
 	if (!line)
 		ft_error(game, 7, NULL);
@@ -99,6 +97,18 @@ void	map_parser(t_game **game, char *map_file)
 	}
 }
 
+void	create_map_malloc(t_game **game)
+{
+	int	i;
+
+	i = -1;
+	(*game)->map->w_map
+		= (char **)safe_malloc(sizeof(char *) * (*game)->map->map_height);
+	while (++i < (*game)->map->map_height)
+		(*game)->map->w_map[i] 
+			= (char *)safe_malloc(sizeof(char) * (*game)->map->map_wide);
+}
+
 static int	check_size(char *line)
 {
 	int	result;
@@ -122,9 +132,7 @@ static int	check_size(char *line)
 void	map_size(t_game **game, int fd, char *line)
 {
 	int	len;
-	int	i;
 
-	i = -1;
 	while (!ft_strchr(line, '1'))
 	{
 		(*game)->read += ft_strlen(line);
@@ -143,9 +151,46 @@ void	map_size(t_game **game, int fd, char *line)
 		ft_free(line);
 		line = get_next_line(fd);
 	}
-	(*game)->map->w_map
-		= (char **)safe_malloc(sizeof(char *) * (*game)->map->map_height);
-	while (++i < (*game)->map->map_height)
-		(*game)->map->w_map[i] 
-			= (char *)safe_malloc(sizeof(char) * (*game)->map->map_wide);
+	create_map_malloc(game);
+}
+
+void	check_borders(t_game **game,char **map, int last, int len)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	while (map[0][++i])
+		if (map[0][i] != '1' && map[0][i] != ' ')
+			ft_error(game, 4, NULL);
+	i = -1;
+	while (map[last][++i])
+		if (map[last][i] != '1' && map[last][i] != ' ')
+			ft_error(game, 4, NULL);
+	while (map[++j])
+	{
+		if ((map[j][0] != ' ' && map[j][0] != '1')
+			|| (map[j][len] != ' ' && map[j][len] != '1'))
+			ft_error(game, 4, NULL);
+	}
+}
+
+void	check_closed_map(t_game **game, char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	check_borders(game, map, (*game)->map->map_height - 1,
+		(*game)->map->map_wide - 1);
+	// while (map[i])
+	// {
+	// 	while (map[i][j])
+	// 	{
+	// 		if (map[i][j] = '0')
+	// 			if (j == 0)
+	// 	}
+	// }
 }

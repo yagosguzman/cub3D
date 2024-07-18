@@ -6,7 +6,7 @@
 #    By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/07/18 20:21:43 by gpinilla         ###   ########.fr        #
+#    Updated: 2024/07/18 20:53:17 by gpinilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ NAME_BONUS      = cub3D_bonus
 LIBFT           = Libft/libft.a
 MINILIBX        = minilibx-linux/libmlx.a
 CC              = gcc
-FLAGS           = -g -Wall -Werror -Wextra -fsanitize=leak
+FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=leak
 LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
 RM              = rm -rf
 

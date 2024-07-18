@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 18:45:10 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:54:33 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define SCREENHEIGHT 1000
 #define MOVE_SPEED 0.07
 #define ROT_SPEED 0.05
-#define MOUSE_SENSITIVITY 0.00004
+#define MOUSE_SENSITIVITY 0.0004
 #define HITBOX_MARGIN 0.1
 
 #define ESC_PRESS 65307

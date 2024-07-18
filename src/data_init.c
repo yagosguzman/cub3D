@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 23:10:26 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:52:47 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub3d.h"
 
@@ -38,9 +37,8 @@ void	init_map(t_game *game)
 
 void	init_player(t_game *game, char c, int x, int y)
 {
-	game->player->pos_x = x + 0.5; // Posicionar el jugador en el centro de la celda
-	game->player->pos_y = y + 0.5; // Posicionar el jugador en el centro de la celda
-
+	game->player->pos_x = x + 0.5;
+	game->player->pos_y = y + 0.5;
 	if (c == 'N')
 	{
 		game->player->dir_x = 1;
@@ -62,8 +60,6 @@ void	init_player(t_game *game, char c, int x, int y)
 		game->player->dir_y = 1;
 	}
 }
-
-
 
 void	safe_clean_texture(t_game *game)
 {

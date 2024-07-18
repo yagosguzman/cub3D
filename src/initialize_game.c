@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:36:41 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 23:56:47 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:25:43 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	initialize_textures(t_game *game)
 	textures = game->textures;
 	mlx = game->mlx;
 	i = -1;
-	while (++i < 4) 
+	while (++i < 4)
 	{
 		textures[i].img = mlx_xpm_file_to_image(mlx->mlx, textures[i].path,
 				&textures[i].width, &textures[i].height);
-		if (!textures[i].img) 
+		if (!textures[i].img)
 		{
 			printf("Error loading texture %d\n", i);
 			ft_error(&game, 1, NULL);

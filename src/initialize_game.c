@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:36:41 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 23:56:47 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:58:47 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	initialize_game(t_game *game)
 	game->mlx = (t_mlx *)safe_malloc(sizeof(t_mlx));
 	game->mlx->mlx = mlx_init();
 	game->mlx->win = mlx_new_window(game->mlx->mlx,
-			SCREENWIDTH, SCREENHEIGHT, "Raycaster");
+			SCREENWIDTH, SCREENHEIGHT, "Cub3D");
 	initialize_player(game);
 	initialize_textures(game);
 	game->mlx->img = mlx_new_image(game->mlx->mlx,

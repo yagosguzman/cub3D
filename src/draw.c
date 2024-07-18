@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:43:03 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/18 18:43:00 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:12:53 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	calculate_texture_coordinates(t_game *game,
 		wallx = game->player->pos_x + ray->perpwalldist * ray->raydirx;
 	wallx -= floor((wallx));
 	params->texx = (int)(wallx * (double)params->texture->width);
-	if (ray->side == 0 && ray->raydirx > 0)
+	if (ray->side == 0 && ray->raydirx < 0)
 		params->texx = params->texture->width - params->texx - 1;
-	if (ray->side == 1 && ray->raydiry < 0)
+	if (ray->side == 1 && ray->raydiry > 0)
 		params->texx = params->texture->width - params->texx - 1;
 }
 

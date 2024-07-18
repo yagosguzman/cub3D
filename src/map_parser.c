@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 18:38:06 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:00:22 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ void	tab_to_space(char *w_map, int *j, int *k)
 	(*k)++;
 }
 
+void	move_cursor(t_game **game, int *fd, char *map_file)
+{
+	char	*buff;
+
+	buff = safe_malloc((*game)->read);
+	*fd = open(map_file, O_RDONLY);
+	if (*fd < 0)
+		ft_error(game, 7, buff);
+	if (read(*fd, buff, (*game)->read) < 0)
+		ft_error(game, 7, buff);
+	ft_free(buff);
+}
+
 void	map_parser(t_game **game, char *map_file)
 {
 	int		fd;
@@ -54,18 +67,11 @@ void	map_parser(t_game **game, char *map_file)
 	int		i;
 	int		j;
 	int		k;
-	char	*buff;
 
 	i = (*game)->map->map_height - 1;
 	k = 0;
 	j = 0;
-	buff = safe_malloc((*game)->read);
-	fd = open(map_file, O_RDONLY);
-	if (fd < 0)
-		ft_error(game, 7, buff);
-	if (read(fd, buff, (*game)->read) < 0)
-		ft_error(game, 7, buff);
-	ft_free(buff);
+	move_cursor(game, &fd, map_file);
 	line = get_next_line(fd);
 	if (!line)
 		ft_error(game, 7, NULL);
@@ -75,20 +81,16 @@ void	map_parser(t_game **game, char *map_file)
 		{
 			if (line[k] == '\t')
 				tab_to_space ((*game)->map->w_map[i], &j, &k);
-			else if (line[k] == 'N' || line[k] == 'S' || line[k] == 'W'
-				|| line[k] == 'E')
-			{
-				init_player((*game), line[k++], i, j);
-				(*game)->map->w_map[i][j++] = '0';
-			}
 			else
+			{
+				if (line[k] == 'N' || line[k] == 'S' || line[k] == 'W'
+					|| line[k] == 'E')
+					init_player((*game), line[k], i, j);
 				(*game)->map->w_map[i][j++] = line[k++];
+			}
 		}
 		while (j < (*game)->map->map_wide)
-		{
-			(*game)->map->w_map[i][j] = ' ';
-			j++;
-		}
+			(*game)->map->w_map[i][j++] = ' ';
 		ft_free(line);
 		line = get_next_line(fd);
 		i--;
@@ -168,12 +170,18 @@ void	check_borders(t_game **game,char **map, int last, int len)
 	while (map[last][++i])
 		if (map[last][i] != '1' && map[last][i] != ' ')
 			ft_error(game, 4, NULL);
-	while (map[++j])
+	while (--last > 0)
 	{
-		if ((map[j][0] != ' ' && map[j][0] != '1')
-			|| (map[j][len] != ' ' && map[j][len] != '1'))
+		if ((map[last][0] != ' ' && map[last][0] != '1')
+			|| (map[last][len] != ' ' && map[last][len] != '1'))
 			ft_error(game, 4, NULL);
 	}
+}
+
+static inline bool	valid_char(char c)
+{
+	return (c == '0' || c == '1' || c == 'N'
+		|| c == 'S' || c == 'W' || c == 'E');
 }
 
 void	check_closed_map(t_game **game, char **map)
@@ -185,12 +193,21 @@ void	check_closed_map(t_game **game, char **map)
 	j = 0;
 	check_borders(game, map, (*game)->map->map_height - 1,
 		(*game)->map->map_wide - 1);
-	// while (map[i])
-	// {
-	// 	while (map[i][j])
-	// 	{
-	// 		if (map[i][j] = '0')
-	// 			if (j == 0)
-	// 	}
-	// }
+	while (map[++i + 1])
+	{
+		while (map[i][++j + 1])
+		{
+			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'W' || map[i][j] == 'E')
+			{
+				if (!valid_char(map[i][j - 1]) || !valid_char(map[i][j + 1])
+					|| !valid_char(map[i - 1][j]) || !valid_char(map[i + 1][j]))
+					ft_error(game, 4, NULL);
+				if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W'
+					|| map[i][j] == 'E')
+					map[i][j] = '0';
+			}
+		}
+		j = 1;
+	}
 }

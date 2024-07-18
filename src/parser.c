@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:08:30 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/17 20:32:59 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:41:11 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,5 +207,7 @@ void	checker_exec(t_game **game, char *file)
 	valid_file(game, file);
 	check_specs(game, file);
 	map_parser(game, file);
+	if (!(*game)->player)
+		ft_error(game, 5, NULL);
 	check_closed_map(game, (*game)->map->w_map);
 }

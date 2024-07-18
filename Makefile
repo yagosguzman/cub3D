@@ -6,7 +6,7 @@
 #    By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/07/16 20:22:19 by gpinilla         ###   ########.fr        #
+#    Updated: 2024/07/18 20:21:43 by gpinilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ NAME_BONUS      = cub3D_bonus
 LIBFT           = Libft/libft.a
 MINILIBX        = minilibx-linux/libmlx.a
 CC              = gcc
-FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=address
+FLAGS           = -g -Wall -Werror -Wextra -fsanitize=leak
 LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
 RM              = rm -rf
 
@@ -69,21 +69,14 @@ HEADER_BONUS    = ./include/cub3d_bonus.h
 all: $(DIR_OBJ) libft_make libmlx_make $(NAME)
 	@echo "$(GREEN)$(NAME) is up to date ✓$(DEF_COLOR)\n"
 
-bonus: $(DIR_OBJ_BONUS) libft_make libmlx_make $(NAME_BONUS)
-	@echo "$(GREEN)$(NAME_BONUS) is up to date ✓$(DEF_COLOR)\n"
+bonus: $(OBJ) $(HEADER) $(LIBFT) $(MINILIBX) Makefile
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIB_FLAGS) -o $(NAME)
+	@echo "$(GREEN)Created $(NAME) ✓$(DEF_COLOR)\n"
 
-# Crear directorios de objetos
 $(DIR_OBJ):
 	@mkdir -p $(DIR_OBJ)
 
-$(DIR_OBJ_BONUS):
-	@mkdir -p $(DIR_OBJ_BONUS)
-
 $(DIR_OBJ)%.o: src/%.c $(HEADER) Makefile $(LIBFT) | $(DIR_OBJ)
-	@$(CC) $(FLAGS) -c $< -o $@
-	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
-
-$(DIR_OBJ_BONUS)%.o: src_b/%.c $(HEADER_BONUS) Makefile $(LIBFT) | $(DIR_OBJ_BONUS)
 	@$(CC) $(FLAGS) -c $< -o $@
 	@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
@@ -99,13 +92,9 @@ $(MINILIBX):
 	@$(MAKE) -C minilibx-linux
 	@echo "$(GREEN)\nCreated $(MINILIBX) ✓$(DEF_COLOR)\n"
 
-$(NAME): $(OBJ) $(HEADER) $(LIBFT) $(MINILIBX)
+$(NAME): $(OBJ) $(HEADER) $(LIBFT) $(MINILIBX) Makefile
 	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(LIB_FLAGS) -o $(NAME)
 	@echo "$(GREEN)Created $(NAME) ✓$(DEF_COLOR)\n"
-
-$(NAME_BONUS): $(OBJ_BONUS) $(HEADER_BONUS) $(LIBFT) $(MINILIBX)
-	@$(CC) $(FLAGS) $(OBJ_BONUS) $(LIBFT) $(LIB_FLAGS) -o $(NAME_BONUS)
-	@echo "$(GREEN)Created $(NAME_BONUS) ✓$(DEF_COLOR)\n"
 
 clean:
 	@$(RM) $(DIR_OBJ) $(DIR_OBJ_BONUS)

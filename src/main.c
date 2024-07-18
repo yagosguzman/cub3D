@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:38:13 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 23:56:31 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:22:04 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	safe_clean_cub3d(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	*game;
-	char	*clean_file;
 
 	if (argc == 2)
 	{

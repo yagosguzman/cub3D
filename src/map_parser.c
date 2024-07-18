@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/17 21:07:28 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:38:06 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	map_parser(t_game **game, char *map_file)
 	int		k;
 	char	*buff;
 
-	i = 0;
+	i = (*game)->map->map_height - 1;
 	k = 0;
 	j = 0;
 	buff = safe_malloc((*game)->read);
@@ -91,7 +91,7 @@ void	map_parser(t_game **game, char *map_file)
 		}
 		ft_free(line);
 		line = get_next_line(fd);
-		i++;
+		i--;
 		j = 0;
 		k = 0;
 	}

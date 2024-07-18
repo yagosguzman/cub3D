@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+         #
+#    By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/10 19:36:19 by ysanchez          #+#    #+#              #
-#    Updated: 2024/07/18 20:53:17 by gpinilla         ###   ########.fr        #
+#    Updated: 2024/07/18 21:38:49 by ysanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,10 @@ FLAGS           = -g #-Wall -Werror -Wextra -fsanitize=leak
 LIB_FLAGS       = -Lminilibx-linux -lmlx -Iminilibx-linux -lXext -lX11 -lm -lz
 RM              = rm -rf
 
-SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_utils.c src/map_parser.c src/loop_game.c src/cast_rays.c src/draw.c src/handle_keys.c src/initialize_game.c src/key_helper.c src/mouse.c
+SRC             = src/main.c src/error.c src/parser.c src/utils.c src/data_init.c src/grafic_utils.c src/map_parser.c\
+				src/loop_game.c src/cast_rays.c src/draw.c src/handle_keys.c src/initialize_game.c src/key_helper.c\
+				src/mouse.c src/checker_file.c src/checker_map.c src/map_utils.c src/parser_utils.c
+
 SRC_BONUS       = src_b/main_bonus.c src_b/error_bonus.c src_b/parser_bonus.c src_b/utils_bonus.c src/map_parser.c
 
 DIR_OBJ         = temp/

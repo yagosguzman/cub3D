@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:09:41 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 21:10:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:31:36 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	empty_values(t_game *game, int key)
 	return (0);
 }
 
-static int	empty_textures(t_game *game)
+int	empty_textures(t_game *game)
 {
 	if (!game->textures[0].path || !game->textures[1].path
 		|| !game->textures[2].path || !game->textures[3].path)

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:04:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 21:12:03 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:02:50 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,6 @@ void	valid_file(t_game **game, char *file_name)
 	if (file_name[len] != 'b' || file_name[len - 1] != 'u'
 		|| file_name[len - 2] != 'c' || file_name[len - 3] != '.' || len < 4)
 		ft_error(game, 1, NULL);
-}
-
-void	check_complete(t_game **game)
-{
-	if (empty_values(*game, 4) || empty_values(*game, 5))
-		ft_error(game, 5, NULL);
-	if (empty_textures(*game))
-		ft_error(game, 5, NULL);
 }
 
 void	checker_exec(t_game **game, char *file)

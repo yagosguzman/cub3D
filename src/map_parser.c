@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 21:03:41 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:34:34 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	map_parser(t_game **game, char *map_file)
 		ft_error(game, 7, NULL);
 	while (line != NULL)
 	{
-		copy_map_line(game, i, line)
+		copy_map_line(game, i, line);
 		line = get_next_line(fd);
 		i--;
 	}
 }
 
-void	create_map_malloc(t_game **game)
+static void	create_map_malloc(t_game **game)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/16 23:56:31 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:29:55 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include "../Libft/inc/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-#define SCREENWIDTH 1200
-#define SCREENHEIGHT 1200
+#define SCREENWIDTH 2000
+#define SCREENHEIGHT 1000
 #define MOVE_SPEED 0.05
 #define ROT_SPEED 0.05
 #define MOUSE_SENSITIVITY 0.00004

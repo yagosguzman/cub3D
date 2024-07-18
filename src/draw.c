@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:43:03 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 23:45:39 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:43:00 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	determine_texture(t_game *game, t_ray *ray, t_draw_params *params)
 	if (ray->side == 0)
 	{
 		if (ray->raydirx > 0)
-			params->texture = &game->textures[1];
-		else
 			params->texture = &game->textures[0];
+		else
+			params->texture = &game->textures[1];
 	}
 	else
 	{
 		if (ray->raydiry > 0)
-			params->texture = &game->textures[2];
-		else
 			params->texture = &game->textures[3];
+		else
+			params->texture = &game->textures[2];
 	}
 }
 

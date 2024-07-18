@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/18 18:17:20 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:32:02 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	clear_screen(t_game *game)
 		while (++x < SCREENWIDTH)
 		{
 			if (y < SCREENHEIGHT / 2)
-				game->mlx->data[y * SCREENWIDTH + x] 
+				game->mlx->data[y * SCREENWIDTH + x]
 					= rgb_to_hex(game->ceiling);
 			else
-				game->mlx->data[y * SCREENWIDTH + x] 
+				game->mlx->data[y * SCREENWIDTH + x]
 					= rgb_to_hex(game->floor);
 		}
 	}

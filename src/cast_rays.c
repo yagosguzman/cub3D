@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:37:18 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/16 23:57:29 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:29:14 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void	cast_rays(t_game *game)
 		draw_walls(game, ray, x);
 		free(ray);
 	}
-	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win, 
+	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win,
 		game->mlx->img, 0, 0);
 }

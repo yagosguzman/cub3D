@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:10:07 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 19:32:15 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:17:13 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	safe_write(t_game *game, int fd, char c)
 		ft_error(&game, 3, NULL);
 }
 
-void	ft_exit_error(void)
+bool	ft_isspace(char c)
 {
-	perror(NULL);
-	exit(errno);
+	return ((c >= 9 && c <= 13) || c == ' ');
 }

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 21:34:34 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/20 20:39:32 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	create_map_malloc(t_game **game)
 	int	i;
 
 	i = -1;
+	if (!(*game)->map)
+		ft_error(game, 5, NULL);
 	(*game)->map->w_map
 		= (char **)safe_malloc(sizeof(char *) * (*game)->map->map_height);
 	while (++i < (*game)->map->map_height)
@@ -71,12 +73,14 @@ void	map_size(t_game **game, int fd, char *line)
 {
 	int	len;
 
-	while (!ft_strchr(line, '1'))
+	while (line != NULL && !ft_strchr(line, '1'))
 	{
 		(*game)->read += ft_strlen(line);
 		ft_free(line);
 		line = get_next_line(fd);
 	}
+	if (line != NULL)
+		init_map(*game);
 	while (line != NULL)
 	{
 		if (!ft_strchr(line, '1'))

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 21:15:20 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:05:25 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	init_map(t_game *game)
 
 void	init_player(t_game *game, char c, int x, int y)
 {
-	game->player->pos_x = x + 0.5;
-	game->player->pos_y = y + 0.5;
+	game->player->pos_x = x + 0.51;
+	game->player->pos_y = y + 0.49;
 	if (c == 'N')
 	{
 		game->player->dir_x = 1;

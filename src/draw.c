@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:43:03 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/18 19:12:53 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:03:42 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,14 @@ void	draw_line(t_game *game, t_draw_params *params)
 	{
 		d = y * 256 - SCREENHEIGHT * 128 + params->lineheight * 128;
 		texy = ((d * params->texture->height) / params->lineheight) / 256;
-		color = params->texture->data[texy * params->texture->width
+		// if (texy >= 0 && texy < params->texture->height && params->texx >= 0 && params->texx < params->texture->width)
+		// {
+			color = params->texture->data[texy * params->texture->width
 			+ params->texx];
-		game->mlx->data[y * SCREENWIDTH + params->x] = color;
+			game->mlx->data[y * SCREENWIDTH + params->x] = color;
+		// }
+		
+		
 	}
 }
 

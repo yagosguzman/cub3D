@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/22 16:50:14 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:29:30 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
-
 typedef struct s_player
 {
 	double		pos_x;
@@ -130,7 +129,7 @@ typedef struct s_game
 	t_ray			*ray;
 	long long		read;
 	t_key_node		*keys;
-	bool				mouse_control;
+	bool			mouse_control;
 }				t_game;
 
 /*###### PARSER ######*/
@@ -168,8 +167,7 @@ void		game_loop(t_game *game);
 void		initialize_game(t_game *game);
 void		cast_rays(t_game *game);
 void		clear_screen(t_game *game);
-void		calculate_step_and_side_dist(t_game *game, t_ray *ray,
-				t_player *player);
+void		calculate_step_and_side_dist(t_ray *ray, t_player *player);
 void		perform_dda(t_game *game, t_ray *ray);
 void		calculate_wall_distance(t_ray *ray, t_player *player);
 void		draw_walls(t_game *game, t_ray *ray, int x);
@@ -184,7 +182,6 @@ void		rotate_right(t_player *player, double speed);
 int			handle_keypress(int keycode, t_game *game);
 int			handle_keyrelease(int keycode, t_game *game);
 int			handle_mouse(int x, int y, t_game *game);
-
 t_key_node	*create_key_node(int keycode);
 t_key_node	*find_key_node(t_key_node *head, int keycode);
 void		add_key_node(t_key_node **head, int keycode);

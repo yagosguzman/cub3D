@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/20 23:20:35 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:16:54 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ void	map_parser(t_game **game, char *map_file)
 	int		fd;
 	char	*line;
 	int		i;
-	int		j;
-	int		k;
 
 	i = (*game)->map->map_height - 1;
-	k = 0;
-	j = 0;
 	move_cursor(game, &fd, map_file);
 	line = get_next_line(fd);
 	if (!line)

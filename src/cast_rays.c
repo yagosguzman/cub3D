@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:37:18 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/18 21:14:48 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:18:29 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	calculate_step_and_side_dist(t_game *game, t_ray *ray, t_player *player)
+void	calculate_step_and_side_dist(t_ray *ray, t_player *player)
 {
 	if (ray->raydirx < 0)
 	{
@@ -104,7 +104,7 @@ void	cast_rays(t_game *game)
 	{
 		ray = (t_ray *)safe_malloc(sizeof(t_ray));
 		setup_ray(game, ray, x);
-		calculate_step_and_side_dist(game, ray, player);
+		calculate_step_and_side_dist(ray, player);
 		perform_dda(game, ray);
 		calculate_wall_distance(ray, player);
 		draw_walls(game, ray, x);

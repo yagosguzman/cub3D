@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:54:25 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 22:03:24 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:20:32 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	check_borders(t_game **game, char **map, int last, int len)
 {
 	int	i;
-	int	j;
 
 	i = -1;
-	j = 0;
 	while (map[0][++i])
 		if (map[0][i] != '1' && map[0][i] != ' ')
 			ft_error(game, 4, NULL);

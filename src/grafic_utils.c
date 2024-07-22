@@ -6,7 +6,7 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/22 16:51:57 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:25:59 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == ESC_PRESS)
 		exit(0);
 	else if (keycode == SPACE_KEY)
+	{
 		game->mouse_control = !game->mouse_control;
+		if (game->mouse_control)
+			mlx_mouse_hide(game->mlx->mlx, game->mlx->win);
+		else
+			mlx_mouse_show(game->mlx->mlx, game->mlx->win);
+	}
 	set_key_state(&game->keys, keycode, 1);
 	return (0);
 }

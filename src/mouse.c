@@ -6,17 +6,11 @@
 /*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:14:14 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/22 18:14:18 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:20:19 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	destroy_win(int keycode, t_mlx *s_mlx)
-{
-	mlx_destroy_window(s_mlx->mlx, s_mlx->win);
-	return (0);
-}
 
 int	handle_mouse(int x, int y, t_game *game)
 {

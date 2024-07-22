@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:02:15 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/20 23:18:42 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:05:57 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	copy_map_line(t_game **game, int i, char *line)
 			tab_to_space ((*game)->map->w_map[i], &j, &k);
 		else
 		{
-			if (line[k] == 'N' || line[k] == 'S' || line[k] == 'W' || line[k] == 'E')
+			if (line[k] == 'N' || line[k] == 'S'
+				|| line[k] == 'W' || line[k] == 'E')
 				init_player((*game), line[k], i, j);
 			(*game)->map->w_map[i][j++] = line[k++];
 		}

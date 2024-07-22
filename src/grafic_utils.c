@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grafic_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:00:17 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/18 21:56:26 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:51:57 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == ESC_PRESS)
 		exit(0);
+	else if (keycode == SPACE_KEY)
+		game->mouse_control = !game->mouse_control;
 	set_key_state(&game->keys, keycode, 1);
 	return (0);
 }

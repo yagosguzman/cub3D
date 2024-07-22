@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:36:41 by gpinilla          #+#    #+#             */
-/*   Updated: 2024/07/18 21:16:21 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:40:50 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void	initialize_game(t_game *game)
 			&game->mlx->bpp, &game->mlx->size_line,
 			&game->mlx->endian);
 	game->keys = NULL;
+	game->mouse_control = false;
 }

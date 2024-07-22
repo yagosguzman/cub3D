@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:12:05 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 21:38:14 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:50:14 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define HITBOX_MARGIN 0.1
 
 # define ESC_PRESS 65307
+# define SPACE_KEY 32
 # define W_KEY 119
 # define A_KEY 97
 # define S_KEY 115
@@ -129,6 +130,7 @@ typedef struct s_game
 	t_ray			*ray;
 	long long		read;
 	t_key_node		*keys;
+	bool				mouse_control;
 }				t_game;
 
 /*###### PARSER ######*/

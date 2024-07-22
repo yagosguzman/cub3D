@@ -1,10 +1,11 @@
-F 120,117,115
-C 101,00000016,204
 
-NO textures/TEXT_NO.xpm
+F	120,117,115
+C   101,00000016,204    
+
+
+
+NO textures/ejemplo.xpm
 SO textures/TEXT_SO.xpm
 WE textures/TEXT_WE.xpm
 EA textures/TEXT_EA.xpm
-   1
-111W11
-   1
+

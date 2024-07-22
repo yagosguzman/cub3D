@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:27:19 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/22 18:16:54 by gpinilla         ###   ########.fr       */
+/*   Updated: 2024/07/22 20:00:57 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,24 @@ static int	check_size(char *line)
 	return (result);
 }
 
+static bool	ft_strspace(const char *s)
+{
+	if (!s)
+		return (true);
+	while (*s)
+	{
+		if (!ft_isspace(*s))
+			return (false);
+		s++;
+	}
+	return (true);
+}
+
 void	map_size(t_game **game, int fd, char *line)
 {
 	int	len;
 
-	while (line != NULL && !ft_strchr(line, '1'))
+	while (line != NULL && ft_strspace(line))
 	{
 		(*game)->read += ft_strlen(line);
 		ft_free(line);
@@ -80,7 +93,7 @@ void	map_size(t_game **game, int fd, char *line)
 	while (line != NULL)
 	{
 		if (!ft_strchr(line, '1'))
-			ft_error(game, 4, line);
+			ft_error(game, 2, line);
 		len = check_size(line);
 		valid_map_char(*game, line);
 		if ((*game)->map->map_wide < len)

@@ -1,10 +1,10 @@
 F 120,7,7
 C 255,0,0
 
-NO cub3D/textures/eclipse.xpm
-EA cub3D/textures/rage.xpm
-WE cub3D/textures/guts.xpm
-SO cub3D/textures/wrong.xpm
+NO textures/eclipse.xpm
+EA textures/rage.xpm
+WE textures/guts.xpm
+SO textures/wrong.xpm
 
 11111111111111111111111111111111
 10000000000000000E00000000000001

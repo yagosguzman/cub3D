@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/cub3D",
-			"args": ["${workspaceFolder}/Mapa2.cub"],
+			"args": ["${workspaceFolder}/test.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

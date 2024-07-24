@@ -6,11 +6,24 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:04:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/18 22:02:50 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:39:57 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	check_rgb_complete(t_game *game, int key)
+{
+	if (key == 4)
+		if (game->floor[0] == -1 || game->floor[0] == -1
+			|| game->floor[0] == -1)
+			ft_error(&game, 9, NULL);
+
+	if (key == 5)
+		if (game->ceiling[0] == -1 || game->ceiling[1] == -1
+			|| game->ceiling[2] == -1)
+			ft_error(&game, 9, NULL);
+}
 
 void	check_rgb_valid(t_game *game, char *address, int key)
 {
@@ -36,6 +49,7 @@ void	check_rgb_valid(t_game *game, char *address, int key)
 	}
 	if (*address != '\0' || *(address - 1) == ',')
 		ft_error(&game, 9, aux);
+	check_rgb_complete(game, key);
 	game->checklist++;
 	ft_free(aux);
 }

@@ -6,7 +6,7 @@
 /*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 21:04:16 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/24 19:39:57 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:23:45 by ysanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	check_rgb_complete(t_game *game, int key)
 		if (game->floor[0] == -1 || game->floor[0] == -1
 			|| game->floor[0] == -1)
 			ft_error(&game, 9, NULL);
-
 	if (key == 5)
 		if (game->ceiling[0] == -1 || game->ceiling[1] == -1
 			|| game->ceiling[2] == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 20:54:25 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/22 19:08:06 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:14:08 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_closed_map(t_game **game, char **map)
 	j = 0;
 	check_borders(game, map, (*game)->map->map_height - 1,
 		(*game)->map->map_wide - 1);
-	while (map && map[i + 1])
+	while (map && i < (*game)->map->map_height - 1 && map[i])
 	{
 		while (map[i][++j])
 		{

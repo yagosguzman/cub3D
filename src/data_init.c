@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysanchez <ysanchez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpinilla <gpinilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:19:26 by ysanchez          #+#    #+#             */
-/*   Updated: 2024/07/20 23:05:25 by ysanchez         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:16:42 by gpinilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_player(t_game *game, char c, int x, int y)
 
 void	safe_clean_texture(t_game *game)
 {
-	if (game && game->textures)
+	if (game)
 	{
 		safe_free((void **)&game->textures[0].path);
 		safe_free((void **)&game->textures[1].path);
